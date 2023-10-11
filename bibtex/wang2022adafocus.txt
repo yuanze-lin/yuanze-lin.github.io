@@ -1,0 +1,8 @@
+@inproceedings{wang2022adafocus,
+  title={Adafocus v2: End-to-end training of spatial dynamic networks for video recognition},
+  author={Wang, Yulin and Yue, Yang and Lin, Yuanze and Jiang, Haojun and Lai, Zihang and Kulikov, Victor and Orlov, Nikita and Shi, Humphrey and Huang, Gao},
+  booktitle={2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={20030--20040},
+  year={2022},
+  organization={IEEE}
+}
