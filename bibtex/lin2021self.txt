@@ -1,0 +1,7 @@
+@inproceedings{lin2021self,
+  title={Self-supervised video representation learning with meta-contrastive network},
+  author={Lin, Yuanze and Guo, Xun and Lu, Yan},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={8239--8249},
+  year={2021}
+}
