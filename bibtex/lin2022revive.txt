@@ -1,0 +1,8 @@
+@article{lin2022revive,
+  title={Revive: Regional visual representation matters in knowledge-based visual question answering},
+  author={Lin, Yuanze and Xie, Yujia and Chen, Dongdong and Xu, Yichong and Zhu, Chenguang and Yuan, Lu},
+  journal={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={10560--10571},
+  year={2022}
+}
