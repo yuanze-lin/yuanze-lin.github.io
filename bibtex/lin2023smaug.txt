@@ -1,0 +1,7 @@
+@inproceedings{lin2023smaug,
+  title={SMAUG: Sparse Masked Autoencoder for Efficient Video-Language Pre-training},
+  author={Lin, Yuanze and Wei, Chen and Wang, Huiyu and Yuille, Alan and Xie, Cihang},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={2459--2469},
+  year={2023}
+}
