@@ -1,0 +1,7 @@
+@inproceedings{jiang2022pseudo,
+  title={Pseudo-q: Generating pseudo language queries for visual grounding},
+  author={Jiang, Haojun and Lin, Yuanze and Han, Dongchen and Song, Shiji and Huang, Gao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={15513--15523},
+  year={2022}
+}
