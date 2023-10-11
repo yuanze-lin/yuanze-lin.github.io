@@ -1,0 +1,7 @@
+@inproceedings{xin2021eva,
+  title={Eva-gcn: Head pose estimation based on graph convolutional networks},
+  author={Xin, Miao and Mo, Shentong and Lin, Yuanze},
+  booktitle={Proceedings of the IEEE/CVF Conference on computer vision and pattern recognition},
+  pages={1462--1471},
+  year={2021}
+}
