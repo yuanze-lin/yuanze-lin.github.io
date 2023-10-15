@@ -161,11 +161,11 @@ img{
     display: flex;
 }
 .column {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
+  float: left;
+  width: 45%;
+  padding: 5px;
 }
 .column img {
-    max-width: 100%;
+    max-width: 45%;
     height: auto;
 }
