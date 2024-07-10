@@ -1,0 +1,6 @@
+@article{lin2024rethinking,
+  title={Rethinking Visual Prompting for Multimodal Large Language Models with External Knowledge},
+  author={Lin, Yuanze and Li, Yunsheng and Chen, Dongdong and Xu, Weijian and Clark, Ronald and Torr, Philip and Yuan, Lu},
+  journal={arXiv preprint arXiv:2407.04681},
+  year={2024}
+}
