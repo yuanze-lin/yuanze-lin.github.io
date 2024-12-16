@@ -1,0 +1,6 @@
+@article{lin2024olympus, 
+   title={Olympus: A Universal Task Router for Computer Vision Tasks}, 
+   author={Lin, Yuanze and Li, Yunsheng and Chen, Dongdong and Xu, Weijian and Clark, Ronald and Torr, Philip HS}, 
+   journal={arXiv preprint arXiv:2412.09612}, 
+   year={2024} 
+}
