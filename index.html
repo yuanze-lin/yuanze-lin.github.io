@@ -424,6 +424,9 @@
   .exp-section {
     width: 100%;
     margin: 20px auto 0 auto;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: separate;
   }
 
   .exp-header {
@@ -446,14 +449,15 @@
 
   .exp-list {
     width: 100%;
-    max-width: 100%;
+    max-width: 1100px;
     margin: 0 auto;
   }
 
   .exp-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 18px;
+    align-items: start;
     margin-top: 18px;
   }
 
@@ -462,36 +466,33 @@
   }
 
   .exp-logo {
-    flex: 0 0 150px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 12px;
-    box-sizing: border-box;
+    padding-top: 2px;
   }
 
   .exp-logo img {
     display: block;
-    max-width: 100%;
     height: auto;
     object-fit: contain;
   }
 
-  .exp-logo.microsoft img { width: 100px; }
-  .exp-logo.ucmerced img { width: 85px; }
-  .exp-logo.alibaba img { width: 115px; }
-  .exp-logo.jhu img { width: 70px; }
-  .exp-logo.tencent img { width: 80px; }
-  .exp-logo.msra img { width: 100px; }
+  .logo-microsoft { width: 100px; }
+  .logo-ucmerced { width: 85px; }
+  .logo-alibaba { width: 115px; }
+  .logo-jhu { width: 70px; }
+  .logo-tencent { width: 80px; }
+  .logo-msra { width: 100px; }
 
   .exp-text {
-    flex: 1;
     line-height: 1.2;
     text-align: left;
+    padding-top: 0;
   }
 </style>
 
-<table class="exp-section" style="border:0; border-spacing:0; border-collapse:separate; margin-right:auto; margin-left:auto;">
+<table class="exp-section">
   <tbody>
     <tr>
       <td class="exp-header">
@@ -508,8 +509,8 @@
 <div class="exp-list">
 
   <div class="exp-item">
-    <div class="exp-logo microsoft">
-      <img src="icons/MicrosoftResearch.png" alt="Microsoft">
+    <div class="exp-logo">
+      <img class="logo-microsoft" src="icons/MicrosoftResearch.png" alt="Microsoft">
     </div>
     <div class="exp-text">
       <a href="https://www.microsoft.com/en-us/research/">
@@ -521,8 +522,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo microsoft">
-      <img src="icons/MicrosoftResearch.png" alt="Microsoft">
+    <div class="exp-logo">
+      <img class="logo-microsoft" src="icons/MicrosoftResearch.png" alt="Microsoft">
     </div>
     <div class="exp-text">
       <a href="https://www.microsoft.com/en-us/research/">
@@ -534,8 +535,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo ucmerced">
-      <img src="icons/uc_merced.png" alt="UC Merced">
+    <div class="exp-logo">
+      <img class="logo-ucmerced" src="icons/uc_merced.png" alt="UC Merced">
     </div>
     <div class="exp-text">
       <a href="http://vllab.ucmerced.edu/">
@@ -547,8 +548,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo alibaba">
-      <img src="icons/alibaba2.png" alt="Alibaba">
+    <div class="exp-logo">
+      <img class="logo-alibaba" src="icons/alibaba2.png" alt="Alibaba">
     </div>
     <div class="exp-text">
       <a href="https://www.alibabagroup.com/en-US/">
@@ -560,8 +561,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo jhu">
-      <img src="icons/jhu2.png" alt="Johns Hopkins">
+    <div class="exp-logo">
+      <img class="logo-jhu" src="icons/jhu2.png" alt="Johns Hopkins">
     </div>
     <div class="exp-text">
       <a href="https://ccvl.jhu.edu/">
@@ -573,8 +574,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo microsoft msra">
-      <img src="icons/MicrosoftResearch.png" alt="Microsoft">
+    <div class="exp-logo">
+      <img class="logo-microsoft msra" src="icons/MicrosoftResearch.png" alt="Microsoft">
     </div>
     <div class="exp-text">
       <a href="https://www.microsoft.com/en-us/research/project/project-florence-vl/publications/">
@@ -586,8 +587,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo microsoft msra">
-      <img src="icons/Microsoft_Research_Asia_logo.png" alt="Microsoft Research Asia">
+    <div class="exp-logo">
+      <img class="logo-msra" src="icons/Microsoft_Research_Asia_logo.png" alt="Microsoft Research Asia">
     </div>
     <div class="exp-text">
       <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">
@@ -599,8 +600,8 @@
   </div>
 
   <div class="exp-item">
-    <div class="exp-logo tencent">
-      <img src="icons/tencent_ai2.png" alt="Tencent">
+    <div class="exp-logo">
+      <img class="logo-tencent" src="icons/tencent_ai2.png" alt="Tencent">
     </div>
     <div class="exp-text">
       <a href="https://ai.tencent.com/ailab/en/about">
