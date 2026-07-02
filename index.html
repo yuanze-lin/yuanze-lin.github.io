@@ -421,12 +421,10 @@
       </tbody></table>
 
 <style>
-  .exp-section {
+  .exp-wrap {
     width: 100%;
+    max-width: 1100px;
     margin: 20px auto 0 auto;
-    border: 0;
-    border-spacing: 0;
-    border-collapse: separate;
   }
 
   .exp-header {
@@ -449,27 +447,25 @@
 
   .exp-list {
     width: 100%;
-    max-width: 1100px;
     margin: 0 auto;
   }
 
   .exp-item {
     display: grid;
-    grid-template-columns: 140px 1fr;
-    column-gap: 18px;
-    align-items: start;
-    margin-top: 18px;
-  }
-
-  .exp-item:first-child {
-    margin-top: 8px;
+    grid-template-columns: 150px 1fr;
+    column-gap: 16px;
+    align-items: center;
+    height: 128px;
+    overflow: hidden;
   }
 
   .exp-logo {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 2px;
+    align-items: center;
+    height: 100%;
+    padding-left: 10px;
+    box-sizing: border-box;
   }
 
   .exp-logo img {
@@ -478,21 +474,55 @@
     object-fit: contain;
   }
 
-  .logo-microsoft { width: 100px; }
-  .logo-ucmerced { width: 85px; }
-  .logo-alibaba { width: 115px; }
+  .logo-ms { width: 100px; }
+  .logo-ucm { width: 85px; }
+  .logo-ali { width: 115px; }
   .logo-jhu { width: 70px; }
   .logo-tencent { width: 80px; }
   .logo-msra { width: 100px; }
 
   .exp-text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     line-height: 1.2;
     text-align: left;
-    padding-top: 0;
+    overflow: hidden;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+
+  .exp-text .line1,
+  .exp-text .line2,
+  .exp-text .line3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .exp-text .line1 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .exp-text .line2 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .exp-text .line3 {
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  .exp-item + .exp-item {
+    border-top: 0;
+    margin-top: 0;
   }
 </style>
 
-<table class="exp-section">
+<table class="exp-wrap" style="border:0; border-spacing:0; border-collapse:separate; margin-right:auto; margin-left:auto;">
   <tbody>
     <tr>
       <td class="exp-header">
@@ -510,79 +540,91 @@
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-microsoft" src="icons/MicrosoftResearch.png" alt="Microsoft">
+      <img class="logo-ms" src="icons/MicrosoftResearch.png" alt="Microsoft Research">
     </div>
     <div class="exp-text">
-      <a href="https://www.microsoft.com/en-us/research/">
-        <span class="papertitle">Microsoft Cambridge</span>
-      </a><br>
-      <strong>Researcher Intern, Jul 2026 - Present</strong><br>
-      <em>hosted by Dr. <a href="https://scholar.google.com/citations?user=n137ACEAAAAJ&hl=pl">Marek Kowalski</a>, working on spatial reasoning in multimodal large language models (MLLMs).</em>
+      <div class="line1">
+        <a href="https://www.microsoft.com/en-us/research/">
+          <span class="papertitle">Microsoft Cambridge</span>
+        </a>
+      </div>
+      <div class="line2">Researcher Intern, Jul 2026 - Present</div>
+      <div class="line3">hosted by Dr. <a href="https://scholar.google.com/citations?user=n137ACEAAAAJ&hl=pl">Marek Kowalski</a>, working on spatial reasoning in multimodal large language models (MLLMs).</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-microsoft" src="icons/MicrosoftResearch.png" alt="Microsoft">
+      <img class="logo-ms" src="icons/MicrosoftResearch.png" alt="Microsoft Research">
     </div>
     <div class="exp-text">
-      <a href="https://www.microsoft.com/en-us/research/">
-        <span class="papertitle">GenAI @ Microsoft Redmond</span>
-      </a><br>
-      <strong>Researcher Intern, Feb 2024 - Nov 2024</strong><br>
-      <em>hosted by Dr. <a href="https://www.dongdongchen.bid/">Dongdong Chen</a>, working on multimodal large language models (MLLMs).</em>
+      <div class="line1">
+        <a href="https://www.microsoft.com/en-us/research/">
+          <span class="papertitle">GenAI @ Microsoft Redmond</span>
+        </a>
+      </div>
+      <div class="line2">Researcher Intern, Feb 2024 - Nov 2024</div>
+      <div class="line3">hosted by Dr. <a href="https://www.dongdongchen.bid/">Dongdong Chen</a>, working on multimodal large language models (MLLMs).</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-ucmerced" src="icons/uc_merced.png" alt="UC Merced">
+      <img class="logo-ucm" src="icons/uc_merced.png" alt="UC Merced">
     </div>
     <div class="exp-text">
-      <a href="http://vllab.ucmerced.edu/">
-        <span class="papertitle">Vision and Learning Lab @ UC Merced</span>
-      </a><br>
-      <strong>Visiting Student, May 2022 - Nov 2023</strong><br>
-      <em>hosted by Prof. <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>, working on text-driven image editing.</em>
+      <div class="line1">
+        <a href="http://vllab.ucmerced.edu/">
+          <span class="papertitle">Vision and Learning Lab @ UC Merced</span>
+        </a>
+      </div>
+      <div class="line2">Visiting Student, May 2022 - Nov 2023</div>
+      <div class="line3">hosted by Prof. <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>, working on text-driven image editing.</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-alibaba" src="icons/alibaba2.png" alt="Alibaba">
+      <img class="logo-ali" src="icons/alibaba2.png" alt="Alibaba">
     </div>
     <div class="exp-text">
-      <a href="https://www.alibabagroup.com/en-US/">
-        <span class="papertitle">Alibaba Group</span>
-      </a><br>
-      <strong>Senior Algorithm Engineer, Feb 2023 - Aug 2023</strong><br>
-      <em>Working on vision-language pre-training, fine-tuning, and the applicability of large language models (LLMs).</em>
+      <div class="line1">
+        <a href="https://www.alibabagroup.com/en-US/">
+          <span class="papertitle">Alibaba Group</span>
+        </a>
+      </div>
+      <div class="line2">Senior Algorithm Engineer, Feb 2023 - Aug 2023</div>
+      <div class="line3">Working on vision-language pre-training, fine-tuning, and the applicability of large language models (LLMs).</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-jhu" src="icons/jhu2.png" alt="Johns Hopkins">
+      <img class="logo-jhu" src="icons/jhu2.png" alt="Johns Hopkins University">
     </div>
     <div class="exp-text">
-      <a href="https://ccvl.jhu.edu/">
-        <span class="papertitle">CCVL @ Johns Hopkins University</span>
-      </a><br>
-      <strong>Research Assistant, May 2022 - Feb 2023</strong><br>
-      <em>with Prof. <a href="https://scholar.google.com/citations?user=X3vVZPcAAAAJ&hl=en">Cihang Xie</a> and Prof. <a href="https://scholar.google.com/citations?user=FJ-huxgAAAAJ&hl=en">Alan Yuille</a>, working on vision-language pre-training based on MAE.</em>
+      <div class="line1">
+        <a href="https://ccvl.jhu.edu/">
+          <span class="papertitle">CCVL @ Johns Hopkins University</span>
+        </a>
+      </div>
+      <div class="line2">Research Assistant, May 2022 - Feb 2023</div>
+      <div class="line3">with Prof. <a href="https://scholar.google.com/citations?user=X3vVZPcAAAAJ&hl=en">Cihang Xie</a> and Prof. <a href="https://scholar.google.com/citations?user=FJ-huxgAAAAJ&hl=en">Alan Yuille</a>, working on vision-language pre-training based on MAE.</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-microsoft msra" src="icons/MicrosoftResearch.png" alt="Microsoft">
+      <img class="logo-ms" src="icons/MicrosoftResearch.png" alt="Microsoft Research">
     </div>
     <div class="exp-text">
-      <a href="https://www.microsoft.com/en-us/research/project/project-florence-vl/publications/">
-        <span class="papertitle">Microsoft Redmond</span>
-      </a><br>
-      <strong>Researcher Intern, Feb 2022 - June 2022</strong><br>
-      <em>with Dr. <a href="https://scholar.google.com/citations?user=r2FiAE4AAAAJ&hl=en">Yujia Xie</a>, Dr. <a href="https://scholar.google.com/citations?hl=en&user=sYKpKqEAAAAJ">Dongdong Chen</a> and Dr. <a href="https://scholar.google.com/citations?user=sYza2XwAAAAJ&hl=en">Yichong Xu</a>, working on knowledge-based VQA.</em>
+      <div class="line1">
+        <a href="https://www.microsoft.com/en-us/research/project/project-florence-vl/publications/">
+          <span class="papertitle">Microsoft Redmond</span>
+        </a>
+      </div>
+      <div class="line2">Researcher Intern, Feb 2022 - June 2022</div>
+      <div class="line3">with Dr. <a href="https://scholar.google.com/citations?user=r2FiAE4AAAAJ&hl=en">Yujia Xie</a>, Dr. <a href="https://scholar.google.com/citations?hl=en&user=sYKpKqEAAAAJ">Dongdong Chen</a> and Dr. <a href="https://scholar.google.com/citations?user=sYza2XwAAAAJ&hl=en">Yichong Xu</a>, working on knowledge-based VQA.</div>
     </div>
   </div>
 
@@ -591,24 +633,28 @@
       <img class="logo-msra" src="icons/Microsoft_Research_Asia_logo.png" alt="Microsoft Research Asia">
     </div>
     <div class="exp-text">
-      <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">
-        <span class="papertitle">Microsoft Research Asia</span>
-      </a><br>
-      <strong>Researcher Intern, Dec 2020 - Sep 2021</strong><br>
-      <em>with Dr. <a href="https://scholar.google.com/citations?user=Ow4R8-EAAAAJ&hl=en">Xun Guo</a> and Dr. <a href="https://scholar.google.com/citations?user=djk5l-4AAAAJ&hl=en">Yan Lu</a>, working on self-supervised learning and transformers for video tasks.</em>
+      <div class="line1">
+        <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">
+          <span class="papertitle">Microsoft Research Asia</span>
+        </a>
+      </div>
+      <div class="line2">Researcher Intern, Dec 2020 - Sep 2021</div>
+      <div class="line3">with Dr. <a href="https://scholar.google.com/citations?user=Ow4R8-EAAAAJ&hl=en">Xun Guo</a> and Dr. <a href="https://scholar.google.com/citations?user=djk5l-4AAAAJ&hl=en">Yan Lu</a>, working on self-supervised learning and transformers for video tasks.</div>
     </div>
   </div>
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-tencent" src="icons/tencent_ai2.png" alt="Tencent">
+      <img class="logo-tencent" src="icons/tencent_ai2.png" alt="Tencent AI Lab">
     </div>
     <div class="exp-text">
-      <a href="https://ai.tencent.com/ailab/en/about">
-        <span class="papertitle">Tencent AI Lab</span>
-      </a><br>
-      <strong>Researcher Intern, Sep 2020 - Dec 2020</strong><br>
-      <em>with Dr. <a href="https://scholar.google.com/citations?hl=en&user=wTJ83eEAAAAJ">Haozhi Huang</a>, working on text-driven editing of videos based on meta learning.</em>
+      <div class="line1">
+        <a href="https://ai.tencent.com/ailab/en/about">
+          <span class="papertitle">Tencent AI Lab</span>
+        </a>
+      </div>
+      <div class="line2">Researcher Intern, Sep 2020 - Dec 2020</div>
+      <div class="line3">with Dr. <a href="https://scholar.google.com/citations?hl=en&user=wTJ83eEAAAAJ">Haozhi Huang</a>, working on text-driven editing of videos based on meta learning.</div>
     </div>
   </div>
 
