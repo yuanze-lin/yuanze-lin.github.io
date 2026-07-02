@@ -419,8 +419,7 @@
         </td>
       </tr>        
       </tbody></table>
-
-	  <style>
+<style>
   .exp-wrap {
     width: 100%;
     max-width: 1100px;
@@ -453,78 +452,73 @@
 
   .exp-item {
     display: grid;
-    grid-template-columns: 150px 1fr;
-    column-gap: 14px;
-    align-items: center;
-    height: 106px;
-    overflow: hidden;
-    margin: 0;
+    grid-template-columns: 120px 1fr;
+    column-gap: 16px;
+    align-items: start;
+    margin: 0 0 8px 0;   /* gap between experiences */
+    padding: 0;
   }
 
   .exp-logo {
-    height: 100%;
+    width: 120px;
+    min-height: 72px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding-left: 8px;
+    padding-top: 2px;
     box-sizing: border-box;
     overflow: hidden;
   }
 
   .exp-logo img {
     display: block;
-    max-width: 100%;
-    max-height: 72px;
-    width: auto;
-    height: auto;
     object-fit: contain;
+    height: auto;
+    max-width: 100%;
   }
 
-  .logo-ms { max-height: 54px; }
-  .logo-ucm { max-height: 68px; }
-  .logo-ali { max-height: 68px; }
-  .logo-jhu { max-height: 66px; }
-  .logo-tencent { max-height: 66px; }
-  .logo-msra { max-height: 54px; }
+  .logo-ms { width: 88px; }
+  .logo-ucm { width: 72px; }
+  .logo-ali { width: 132px; }   /* bigger Alibaba logo */
+  .logo-jhu { width: 64px; }
+  .logo-msra { width: 92px; }
+  .logo-tencent { width: 74px; }
 
   .exp-text {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    line-height: 1.12;
-    padding-right: 10px;
-    box-sizing: border-box;
+    line-height: 1.1;
+    text-align: left;
+    min-width: 0;
+    padding-top: 1px;
   }
 
   .exp-name,
   .exp-role,
   .exp-desc {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .exp-name {
     font-size: 17px;
     font-weight: 600;
-    margin-bottom: 1px;
+    white-space: nowrap;
   }
 
   .exp-role {
     font-size: 16px;
     font-weight: 700;
-    margin-bottom: 1px;
+    white-space: nowrap;
+    margin-top: 1px;
   }
 
   .exp-desc {
     font-size: 15px;
     font-style: italic;
-  }
-
-  .exp-item:first-child {
-    margin-top: 8px;
+    white-space: nowrap;
+    margin-top: 1px;
   }
 </style>
 
@@ -591,7 +585,7 @@
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-ali" src="icons/alibaba2.png" alt="Alibaba">
+      <img class="logo-ali" src="icons/alibaba2.png" alt="Alibaba Group">
     </div>
     <div class="exp-text">
       <div class="exp-name">
