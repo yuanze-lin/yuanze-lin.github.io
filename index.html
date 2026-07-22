@@ -23,6 +23,7 @@
         --yl-g2: #7b5cff;   /* violet  */
         --yl-g3: #12b8b0;   /* teal    */
         --yl-line: rgba(20,26,54,0.10);
+        --yl-edge: rgba(75,120,210,0.28);  /* card edge -- light but clearly visible */
       }
 
       html { scroll-behavior: smooth; scroll-padding-top: 64px; }
@@ -133,21 +134,21 @@
       #pub-table { border-collapse: separate !important; border-spacing: 0 14px !important; }
       #pub-table > tbody > tr > td {
         background: rgba(255,255,255,0.6);
-        border-top: 1px solid var(--yl-line);
-        border-bottom: 1px solid var(--yl-line);
+        border-top: 1px solid var(--yl-edge);
+        border-bottom: 1px solid var(--yl-edge);
         transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
       }
       #pub-table > tbody > tr > td:first-child {
-        border-left: 1px solid var(--yl-line);
+        border-left: 1px solid var(--yl-edge);
         border-radius: 14px 0 0 14px;
       }
       #pub-table > tbody > tr > td:last-child {
-        border-right: 1px solid var(--yl-line);
+        border-right: 1px solid var(--yl-edge);
         border-radius: 0 14px 14px 0;
       }
       #pub-table > tbody > tr:hover > td {
         background: rgba(255,255,255,0.85);
-        border-color: rgba(75,91,214,0.30);
+        border-color: rgba(75,91,214,0.45);
         box-shadow: 0 8px 22px rgba(30,36,80,0.10);
       }
 
@@ -174,7 +175,7 @@
         background-repeat: no-repeat;
         background-position: 0 100%;
         border-radius: 2px;
-        transition: color .18s ease, background-color .18s ease, background-size .18s ease;
+        transition: color .18s ease, background-color .18s ease, background-size .18s ease, box-shadow .18s ease;
       }
       td a:not(.brand):hover,
       .exp-text a:hover,
@@ -182,12 +183,11 @@
         color: #fff;
         background-color: var(--yl-g2);
         background-image: none;
-        box-shadow: 0 0 0 3px rgba(123,92,255,0.18);
-        padding: 0 2px;
+        box-shadow: 0 0 0 2px var(--yl-g2);
       }
       /* paper-title links shouldn't get the underline bar twice */
       a:has(.papertitle) { background-image: none !important; box-shadow: none !important; }
-      a:has(.papertitle):hover { background-color: transparent !important; color: inherit !important; padding: 0 !important; }
+      a:has(.papertitle):hover { background-color: transparent !important; color: inherit !important; box-shadow: none !important; }
 
       /* contact / social row with icons */
       .name-links {
@@ -213,7 +213,7 @@
       /* experience cards */
       .exp-item {
         background: rgba(255,255,255,0.6);
-        border: 1px solid var(--yl-line);
+        border: 1px solid var(--yl-edge);
         border-radius: 14px;
         padding: 10px 16px !important;
         height: auto !important;
@@ -223,10 +223,40 @@
       .exp-item + .exp-item { margin-top: 0 !important; }
       .exp-item:hover {
         transform: translateY(-2px);
-        border-color: rgba(75,91,214,0.35);
+        border-color: rgba(75,91,214,0.45);
         box-shadow: 0 10px 26px rgba(30,36,80,0.12);
       }
       .exp-role { color: var(--yl-g1) !important; }
+
+      /* let experience descriptions wrap fully instead of truncating to one
+         ellipsized line (the template hard-caps height + nowrap). */
+      .exp-item { grid-template-columns: 120px 1fr !important; align-items: center !important; }
+      .exp-item .exp-text { height: auto !important; overflow: visible !important; }
+      .exp-item .exp-name,
+      .exp-item .exp-role,
+      .exp-item .exp-desc {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+        line-height: 1.35 !important;
+      }
+      .exp-item .exp-desc { margin-top: 2px; }
+      .logo-thu { width: 66px; height: 66px; }
+
+      /* Industrial / Academic subheadings within Experiences */
+      .exp-subhead {
+        max-width: 1100px;
+        margin: 6px auto 10px auto;
+        padding: 0 4px;
+        font-family: 'Space Grotesk', 'Inter', sans-serif;
+        font-size: 16px; font-weight: 700; letter-spacing: 0.3px;
+        color: var(--yl-g1);
+        display: flex; align-items: center; gap: 10px;
+      }
+      .exp-subhead::after {
+        content: ""; flex: 1; height: 2px; border-radius: 2px;
+        background: linear-gradient(90deg, rgba(75,91,214,0.35), transparent);
+      }
 
       /* accent + hover for the contact / social links row */
       a { transition: color .18s ease; }
@@ -823,13 +853,15 @@
 
 <div class="exp-list">
 
+  <div class="exp-subhead">Industrial</div>
+
   <div class="exp-item">
     <div class="exp-logo">
       <img class="logo-ms" src="icons/Microsoft.png" alt="Microsoft Research">
     </div>
     <div class="exp-text">
       <div class="exp-name">
-        <a href="https://www.microsoft.com/en-us/research/"><span class="papertitle">Microsoft Cambridge</span></a>
+        <a href="https://www.microsoft.com/en-us/research/"><span class="papertitle">Microsoft Research Cambridge</span></a>
       </div>
       <div class="exp-role">Researcher Intern, Jul 2026 - Present</div>
       <div class="exp-desc">hosted by Dr. <a href="https://scholar.google.com/citations?user=n137ACEAAAAJ&hl=pl">Marek Kowalski</a>, working on spatial reasoning in multimodal large language models (MLLMs).</div>
@@ -851,19 +883,6 @@
 
   <div class="exp-item">
     <div class="exp-logo">
-      <img class="logo-ucm" src="icons/uc_merced.png" alt="UC Merced">
-    </div>
-    <div class="exp-text">
-      <div class="exp-name">
-        <a href="http://vllab.ucmerced.edu/"><span class="papertitle">Vision and Learning Lab @ UC Merced</span></a>
-      </div>
-      <div class="exp-role">Visiting Student, May 2022 - Nov 2023</div>
-      <div class="exp-desc">hosted by Prof. <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>, working on text-driven image editing.</div>
-    </div>
-  </div>
-
-  <div class="exp-item">
-    <div class="exp-logo">
       <img class="logo-ali" src="icons/alibaba3.png" alt="Alibaba Group">
     </div>
     <div class="exp-text">
@@ -872,19 +891,6 @@
       </div>
       <div class="exp-role">Senior Algorithm Engineer, Feb 2023 - Aug 2023</div>
       <div class="exp-desc">Working on vision-language pre-training, fine-tuning, and the applicability of large language models (LLMs).</div>
-    </div>
-  </div>
-
-  <div class="exp-item">
-    <div class="exp-logo">
-      <img class="logo-jhu" src="icons/jhu2.png" alt="Johns Hopkins University">
-    </div>
-    <div class="exp-text">
-      <div class="exp-name">
-        <a href="https://ccvl.jhu.edu/"><span class="papertitle">CCVL @ Johns Hopkins University</span></a>
-      </div>
-      <div class="exp-role">Research Assistant, May 2022 - Feb 2023</div>
-      <div class="exp-desc">with Prof. <a href="https://scholar.google.com/citations?user=X3vVZPcAAAAJ&hl=en">Cihang Xie</a> and Prof. <a href="https://scholar.google.com/citations?user=FJ-huxgAAAAJ&hl=en">Alan Yuille</a>, working on vision-language pre-training based on MAE.</div>
     </div>
   </div>
 
@@ -924,6 +930,47 @@
       </div>
       <div class="exp-role">Researcher Intern, Sep 2020 - Dec 2020</div>
       <div class="exp-desc">with Dr. <a href="https://scholar.google.com/citations?hl=en&user=wTJ83eEAAAAJ">Haozhi Huang</a>, working on text-driven editing of videos based on meta learning.</div>
+    </div>
+  </div>
+
+  <div class="exp-subhead">Academic</div>
+
+  <div class="exp-item">
+    <div class="exp-logo">
+      <img class="logo-ucm" src="icons/uc_merced.png" alt="UC Merced">
+    </div>
+    <div class="exp-text">
+      <div class="exp-name">
+        <a href="http://vllab.ucmerced.edu/"><span class="papertitle">Vision and Learning Lab @ UC Merced</span></a>
+      </div>
+      <div class="exp-role">Visiting Student, May 2022 - Nov 2023</div>
+      <div class="exp-desc">hosted by Prof. <a href="https://scholar.google.com/citations?user=p9-ohHsAAAAJ&hl=en">Ming-Hsuan Yang</a>, working on text-driven image editing.</div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-logo">
+      <img class="logo-jhu" src="icons/jhu2.png" alt="Johns Hopkins University">
+    </div>
+    <div class="exp-text">
+      <div class="exp-name">
+        <a href="https://ccvl.jhu.edu/"><span class="papertitle">CCVL @ Johns Hopkins University</span></a>
+      </div>
+      <div class="exp-role">Research Assistant, May 2022 - Feb 2023</div>
+      <div class="exp-desc">with Prof. <a href="https://scholar.google.com/citations?user=X3vVZPcAAAAJ&hl=en">Cihang Xie</a> and Prof. <a href="https://scholar.google.com/citations?user=FJ-huxgAAAAJ&hl=en">Alan Yuille</a>, working on vision-language pre-training based on MAE.</div>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-logo">
+      <img class="logo-thu" src="icons/tsinghua1.png" alt="Tsinghua University">
+    </div>
+    <div class="exp-text">
+      <div class="exp-name">
+        <a href="https://www.tsinghua.edu.cn/en/"><span class="papertitle">Tsinghua University</span></a>
+      </div>
+      <div class="exp-role">Research Assistant, Sep 2021 - Mar 2022</div>
+      <div class="exp-desc">with Prof. <a href="http://www.gaohuang.net/">Gao Huang</a>, working on video recognition and visual grounding.</div>
     </div>
   </div>
 
