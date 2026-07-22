@@ -176,12 +176,14 @@
       }
       /* compact News: tight, even spacing between entries */
       p[style*="line-height:0.8em"] {
-        line-height: 1.35 !important;
-        margin: 3px 0 !important;
+        line-height: 1.25 !important;
+        margin: 1px 0 !important;
       }
+      /* the award badge in the last news line adds height -- keep the row even */
+      p[style*="line-height:0.8em"] .yl-badge { vertical-align: baseline; line-height: 1; padding-top: 1px; padding-bottom: 1px; }
       p[style*="line-height:0.6em"] {
-        line-height: 1.35 !important;
-        margin: 2px 0 !important;
+        line-height: 1.25 !important;
+        margin: 1px 0 !important;
       }
 
       /* profile photo: soft cosmic frame */
@@ -578,7 +580,7 @@
             </tr>
           </tbody></table>
 
-        <table id="pub-table" style="width:100%;margin-top:-40px;margin-right:auto;margin-left:auto;"><tbody>
+        <table id="pub-table" style="width:100%;margin-top:0;margin-right:auto;margin-left:auto;"><tbody>
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
 	    <img src='images/IllumiCraft.png' width="160" height="130">
