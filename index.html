@@ -42,6 +42,19 @@
         0%,100% { opacity: 0.45; }
         50% { opacity: 0.9; }
       }
+      @keyframes yl-aurora {
+        0%   { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1.1); }
+        50%  { transform: translate3d(4%, 3%, 0) rotate(8deg) scale(1.25); }
+        100% { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1.1); }
+      }
+      @keyframes yl-scan {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 100vh; }
+      }
+      @keyframes yl-sheen {
+        0% { background-position: -150% 0; }
+        60%,100% { background-position: 250% 0; }
+      }
 
       html { scroll-behavior: smooth; scroll-padding-top: 64px; }
 
@@ -61,6 +74,27 @@
           linear-gradient(180deg, #eaf4ff 0%, #e2f0ff 55%, #edf7ff 100%);
         background-attachment: fixed;
       }
+      /* drifting aurora ribbon behind everything */
+      body::before {
+        content: "";
+        position: fixed; inset: -20%;
+        z-index: -3; pointer-events: none;
+        background:
+          conic-gradient(from 210deg at 30% 30%, rgba(47,127,224,0.16), transparent 30%),
+          conic-gradient(from 20deg at 75% 60%, rgba(55,182,211,0.16), transparent 32%),
+          radial-gradient(600px 300px at 60% 20%, rgba(120,205,235,0.14), transparent 70%);
+        filter: blur(40px);
+        animation: yl-aurora 22s ease-in-out infinite;
+      }
+      /* faint moving scanlines for a HUD feel */
+      body::after {
+        content: "";
+        position: fixed; inset: 0;
+        z-index: -2; pointer-events: none;
+        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.035) 0 1px, transparent 1px 4px);
+        animation: yl-scan 12s linear infinite;
+        opacity: 0.6;
+      }
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
         background-image:
@@ -69,21 +103,48 @@
           radial-gradient(1.2px 1.2px at 90px 180px, rgba(90,160,255,0.45), transparent),
           radial-gradient(1.6px 1.6px at 230px 230px, rgba(70,140,235,0.4), transparent),
           radial-gradient(1.1px 1.1px at 300px 70px, rgba(120,205,235,0.4), transparent),
-          radial-gradient(1.3px 1.3px at 260px 310px, rgba(90,160,255,0.42), transparent);
-        background-size: 360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px;
+          radial-gradient(1.3px 1.3px at 260px 310px, rgba(90,160,255,0.42), transparent),
+          linear-gradient(rgba(47,127,224,0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(47,127,224,0.05) 1px, transparent 1px);
+        background-size:
+          360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px,
+          48px 48px, 48px 48px;
+        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
+        mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
         animation: yl-twinkle 5s ease-in-out infinite;
       }
 
       /* main content -- light glass panel with a soft aurora edge */
       body > table:first-of-type {
+        position: relative;
         background: var(--yl-panel);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(109,94,252,0.14);
+        border: 1px solid rgba(47,127,224,0.18);
         border-radius: 22px;
-        box-shadow: 0 20px 60px rgba(60,50,120,0.12);
+        box-shadow: 0 20px 60px rgba(30,60,120,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
         margin-top: 84px !important;
         margin-bottom: 48px !important;
+      }
+      /* animated light sheen sweeping across the panel's top edge */
+      body > table:first-of-type::before {
+        content: "";
+        position: absolute; left: 0; right: 0; top: 0; height: 2px;
+        border-radius: 22px 22px 0 0;
+        background: linear-gradient(90deg, transparent, var(--yl-accent), var(--yl-accent2), transparent);
+        background-size: 200% 100%;
+        animation: yl-sheen 7s ease-in-out infinite;
+        opacity: 0.9;
+      }
+      /* HUD corner ticks on the panel */
+      body > table:first-of-type::after {
+        content: "";
+        position: absolute; top: 10px; right: 12px;
+        width: 16px; height: 16px;
+        border-top: 2px solid var(--yl-accent2);
+        border-right: 2px solid var(--yl-accent2);
+        border-radius: 0 6px 0 0;
+        opacity: 0.55;
       }
 
       /* glassy sticky nav */
@@ -451,6 +512,12 @@
 
       @media (max-width: 380px) {
         .name { font-size: 28px !important; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body::before, body::after, #yl-bg,
+        body > table:first-of-type::before,
+        .name::after { animation: none !important; }
       }
     </style>
     
