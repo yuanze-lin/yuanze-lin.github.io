@@ -75,40 +75,30 @@
         position: relative;
         background: #ffffff;
       }
-      /* faint Oxford skyline anchored to the bottom, plus a hairline grid --
-         the skyline is softened via opacity + a top-fade mask so text stays
-         perfectly readable. */
+      /* a single quiet signature: the Oxford skyline ghosted along the bottom */
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
-        background-image:
-          linear-gradient(rgba(43,111,176,0.028) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(43,111,176,0.028) 1px, transparent 1px);
-        background-size: 56px 56px, 56px 56px;
-        -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
-        mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
       }
       #yl-bg::after {
         content: "";
         position: fixed; left: 0; right: 0; bottom: 0;
-        height: 46vh;
+        height: 40vh;
         background-image: url("images/oxford_skyline.webp");
         background-repeat: no-repeat;
         background-position: bottom center;
         background-size: cover;
-        opacity: 0.16;
-        -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%);
-        mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%);
+        opacity: 0.10;
+        -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
+        mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
       }
 
-      /* main content -- clean white sheet with a thin Oxford-blue frame */
+      /* main content -- clean, borderless; sits directly on white */
       body > table:first-of-type {
         position: relative;
-        background: #ffffff;
-        border: 1px solid var(--yl-line);
-        border-top: 3px solid var(--yl-deep);
-        border-radius: 4px;
-        box-shadow: 0 10px 40px rgba(0,33,71,0.06);
-        margin-top: 88px !important;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        margin-top: 76px !important;
         margin-bottom: 48px !important;
       }
 
@@ -219,8 +209,9 @@
       }
       a:hover .papertitle { background-size: 100% 2px; color: var(--yl-accent); }
 
-      /* each paper is a light glass card with a cosmic left rail */
-      #pub-table { border-collapse: separate !important; border-spacing: 0 16px !important; }
+      /* compact vertical rhythm -- tighter section padding & card gaps */
+      body > table:first-of-type td[style*="padding:20px"] { padding: 12px 20px !important; }
+      #pub-table { border-collapse: separate !important; border-spacing: 0 10px !important; }
       #pub-table > tbody > tr > td {
         background: rgba(255,255,255,0.62);
         border-top: 1px solid var(--yl-line);
