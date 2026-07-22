@@ -14,16 +14,19 @@
     <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
     <style>
       :root {
-        --yl-ink: #17203a;
-        --yl-muted: #5a6480;
-        --yl-g1: #4b5bd6;   /* indigo  */
-        --yl-g2: #7b5cff;   /* violet  */
-        --yl-g3: #12b8b0;   /* teal    */
-        --yl-line: rgba(20,26,54,0.10);
-        --yl-edge: rgba(75,120,210,0.28);  /* card edge -- light but clearly visible */
+        --yl-ink: #1a2233;      /* near-black ink for body text */
+        --yl-muted: #6b7488;    /* secondary text */
+        --yl-accent: #1f4e79;   /* single scholarly ink-blue accent */
+        --yl-accent-soft: rgba(31,78,121,0.10);
+        --yl-line: rgba(26,34,51,0.09);
+        --yl-edge: rgba(31,78,121,0.16);   /* subtle card edge */
+        /* legacy vars kept as aliases so any leftover references resolve */
+        --yl-g1: var(--yl-accent);
+        --yl-g2: var(--yl-accent);
+        --yl-g3: var(--yl-accent);
       }
 
       html { scroll-behavior: smooth; scroll-padding-top: 64px; }
@@ -69,40 +72,41 @@
         border-bottom: 1px solid var(--yl-line);
       }
       #yl-nav .brand {
-        font-family: 'Space Grotesk', sans-serif; font-weight: 700;
-        font-size: 15px; margin-right: 12px; color: var(--yl-ink);
-        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
-        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        font-family: 'Newsreader', Georgia, serif; font-weight: 600;
+        font-size: 16px; margin-right: 14px; color: var(--yl-ink);
+        letter-spacing: 0.2px;
       }
       #yl-nav a {
-        font-size: 13.5px; font-weight: 600; color: var(--yl-muted);
-        padding: 5px 12px; border-radius: 999px; transition: all .2s ease;
+        font-size: 13.5px; font-weight: 500; color: var(--yl-muted);
+        padding: 5px 4px; margin: 0 6px; border-radius: 0;
+        border-bottom: 1.5px solid transparent;
+        transition: color .2s ease, border-color .2s ease;
       }
       #yl-nav a:hover {
-        color: #fff; background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
-        transform: translateY(-1px); box-shadow: 0 5px 14px rgba(75,91,214,0.28);
+        color: var(--yl-accent);
+        border-bottom-color: var(--yl-accent);
       }
 
-      /* gradient name in the Space Grotesk display face */
+      /* name -- elegant serif display, single ink color */
       .name {
-        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
-        font-weight: 700 !important; letter-spacing: -0.5px;
-        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2), var(--yl-g3));
-        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        font-family: 'Newsreader', Georgia, serif !important;
+        font-weight: 600 !important; letter-spacing: 0 !important;
+        color: var(--yl-ink) !important;
+        font-size: 40px !important;
       }
 
-      /* refined section headers -- replace Impact with a clean display face and
-         add a gradient accent bar; keep the existing icon + <hr>. */
+      /* refined section headers -- serif display with a small accent tick,
+         keep the existing icon + <hr>. */
       h2[style*="Impact"], .exp-title {
-        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
-        font-size: 22px !important; font-weight: 700 !important;
-        letter-spacing: -0.2px; color: var(--yl-ink) !important;
+        font-family: 'Newsreader', Georgia, serif !important;
+        font-size: 24px !important; font-weight: 600 !important;
+        letter-spacing: 0 !important; color: var(--yl-ink) !important;
       }
-      /* turn the plain <hr> under each header into a soft gradient rule */
+      /* a thin, single-color rule under each header */
       hr {
-        border: none; height: 2px;
-        background: linear-gradient(90deg, var(--yl-g1), rgba(123,92,255,0.15) 70%, transparent);
-        opacity: 0.9;
+        border: none; height: 1px;
+        background: var(--yl-line);
+        opacity: 1;
       }
 
       /* News: fixed-width, tabular date column so every entry's text aligns */
@@ -115,23 +119,24 @@
         font-weight: 600;
       }
 
-      /* profile photo: rounded, framed, subtle lift */
+      /* profile photo: gently rounded, thin frame */
       img.hoverZoomLink, td[style*="width:40%"] img {
-        border-radius: 14px !important;
-        box-shadow: 0 10px 30px rgba(30,36,80,0.16);
+        border-radius: 10px !important;
+        border: 1px solid var(--yl-line);
+        box-shadow: 0 6px 20px rgba(26,34,51,0.10);
         transition: transform .3s ease, box-shadow .3s ease;
       }
-      img.hoverZoomLink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(30,36,80,0.22); }
+      img.hoverZoomLink:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(26,34,51,0.14); }
 
-      /* publication rows: hover-lift card feel + rounded thumbnails */
+      /* publication titles -- serif, ink color, thin accent underline on hover */
       .papertitle {
-        font-family: 'Inter', sans-serif !important; font-weight: 700 !important;
-        font-size: 15px !important; color: var(--yl-ink);
-        background-image: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
-        background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%;
+        font-family: 'Newsreader', Georgia, serif !important; font-weight: 600 !important;
+        font-size: 17px !important; color: var(--yl-ink);
+        background-image: linear-gradient(var(--yl-accent), var(--yl-accent));
+        background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%;
         transition: background-size .25s ease, color .2s ease;
       }
-      a:hover .papertitle { background-size: 100% 2px; color: var(--yl-g1); }
+      a:hover .papertitle { background-size: 100% 1.5px; color: var(--yl-accent); }
 
       /* each paper sits in its own light-edged card, matching the experience cards */
       #pub-table { border-collapse: separate !important; border-spacing: 0 14px !important; }
@@ -160,55 +165,54 @@
         border-radius: 10px;
       }
       td[style*="width:25%"] img {
-        box-shadow: 0 6px 18px rgba(30,36,80,0.12);
+        box-shadow: 0 4px 14px rgba(26,34,51,0.09);
         transition: transform .28s ease, box-shadow .28s ease;
       }
-      td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(30,36,80,0.20); }
+      td[style*="width:25%"] img:hover { transform: scale(1.02); box-shadow: 0 10px 24px rgba(26,34,51,0.15); }
 
-      /* distinct, uniquely-highlighted hyperlinks in body content (nav, name,
-         paper titles keep their own styles) */
+      /* body hyperlinks -- restrained academic accent with a thin underline */
       td a:not(.brand),
       .exp-text a,
       .name-links a {
-        color: var(--yl-g1);
-        font-weight: 600;
+        color: var(--yl-accent);
+        font-weight: 500;
         text-decoration: none;
-        background-image: linear-gradient(90deg, rgba(75,91,214,0.28), rgba(123,92,255,0.28));
-        background-size: 100% 1.5px;
+        background-image: linear-gradient(var(--yl-accent), var(--yl-accent));
+        background-size: 100% 1px;
         background-repeat: no-repeat;
         background-position: 0 100%;
-        border-radius: 2px;
-        transition: color .18s ease, background-color .18s ease, background-size .18s ease, box-shadow .18s ease;
+        transition: background-size .18s ease, color .18s ease;
       }
       td a:not(.brand):hover,
       .exp-text a:hover,
       .name-links a:hover {
-        color: #fff;
-        background-color: var(--yl-g2);
-        background-image: none;
-        box-shadow: 0 0 0 2px var(--yl-g2);
+        color: #0f3050;
+        background-size: 100% 1.5px;
       }
       /* paper-title links shouldn't get the underline bar twice */
-      a:has(.papertitle) { background-image: none !important; box-shadow: none !important; }
-      a:has(.papertitle):hover { background-color: transparent !important; color: inherit !important; box-shadow: none !important; }
+      a:has(.papertitle) { background-image: none !important; }
+      a:has(.papertitle):hover { color: inherit !important; }
 
       /* contact / social row with icons */
       .name-links {
         display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-        gap: 6px 14px; margin-top: 6px;
+        gap: 8px 12px; margin-top: 10px;
       }
       .name-links a {
         display: inline-flex; align-items: center; gap: 6px;
-        padding: 5px 12px; border-radius: 999px;
-        background: rgba(255,255,255,0.55);
-        border: 1px solid var(--yl-line);
+        padding: 5px 13px; border-radius: 6px;
+        background: transparent;
+        border: 1px solid var(--yl-edge);
         background-image: none;
+        color: var(--yl-accent); font-weight: 500;
+        transition: background-color .18s ease, border-color .18s ease, color .18s ease;
       }
       .name-links a:hover {
-        color: #fff; padding: 5px 12px;
-        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
-        box-shadow: 0 6px 16px rgba(75,91,214,0.28);
-        transform: translateY(-1px);
+        color: #fff; padding: 5px 13px;
+        background: var(--yl-accent);
+        background-image: none;
+        border-color: var(--yl-accent);
+        box-shadow: none; transform: none;
       }
       .name-links svg { width: 15px; height: 15px; flex: none; }
       .name-links .sep { display: none; }
@@ -254,26 +258,23 @@
       /* Industrial / Academic subheadings within Experiences */
       .exp-subhead {
         max-width: 1100px;
-        margin: 6px auto 10px auto;
+        margin: 10px auto 12px auto;
         padding: 0 4px;
-        font-family: 'Space Grotesk', 'Inter', sans-serif;
-        font-size: 16px; font-weight: 700; letter-spacing: 0.3px;
-        color: var(--yl-g1);
-        display: flex; align-items: center; gap: 10px;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--yl-muted);
+        display: flex; align-items: center; gap: 12px;
       }
       .exp-subhead::after {
-        content: ""; flex: 1; height: 2px; border-radius: 2px;
-        background: linear-gradient(90deg, rgba(75,91,214,0.35), transparent);
+        content: ""; flex: 1; height: 1px;
+        background: var(--yl-line);
       }
 
-      /* accent + hover for the contact / social links row */
-      a { transition: color .18s ease; }
-
-      /* scroll progress bar */
+      /* scroll progress bar -- thin, single accent */
       #yl-progress {
-        position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 950;
-        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2), var(--yl-g3));
-        box-shadow: 0 0 10px rgba(75,91,214,0.45);
+        position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 950;
+        background: var(--yl-accent);
       }
 
       @media (max-width: 700px) {
