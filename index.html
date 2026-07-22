@@ -241,7 +241,12 @@
         line-height: 1.35 !important;
       }
       .exp-item .exp-desc { margin-top: 2px; }
-      .logo-thu { width: 66px; height: 66px; }
+      .logo-thu { width: 132px !important; height: auto !important; }
+
+      /* the template pulls .exp-list up by 20px, which now collides with the
+         Experiences header and the Industrial subheading -- neutralize it. */
+      .exp-list { top: 0 !important; margin-top: 6px !important; }
+      .exp-subhead:first-child { margin-top: 4px; }
 
       /* Industrial / Academic subheadings within Experiences */
       .exp-subhead {
@@ -594,7 +599,7 @@
           <a href="https://github.com/yuanze-lin/REVIVE">Code</a> /
           <a href="bibtex/lin2022revive.txt">BibTeX</a>
           <p></p>
-          <p>Propose a new knowledge-based VQA method REVIVE, which utilizes the explicit information of object regions not only in the knowledge retrieval stage but also in the answering model. It achieves a new state-of-the-art performance on OK-VQA dataset.</p>
+          <p>Propose REVIVE, a knowledge-based VQA method that exploits explicit object-region information in both the knowledge-retrieval and answering stages, achieving state-of-the-art performance on the OK-VQA dataset.</p>
         </td>
       </tr>
 
@@ -652,7 +657,7 @@
           <a href="bibtex/wang2022adafocus.txt">BibTeX</a>
           <p></p>
           <p>
-          Reformulate AdaFocus as a simple one-stage algorithm by introducing a differentiable interpolation-based patch selection operation and further present an improved training scheme. Extensive experiments on six benchmark datasets demonstrate its effectiveness.
+          Reformulate AdaFocus as a simple one-stage algorithm via a differentiable interpolation-based patch selection and an improved training scheme, with extensive experiments on six benchmarks demonstrating its effectiveness.
           </p>
         </td>
       </tr>
@@ -677,7 +682,7 @@
           <a href="bibtex/lin2021self.txt">BibTeX</a>
           <p></p>
           <p>
-            Propose a Meta-Contrastive Network (MCN), which combines contrastive learning and meta learning for pre-training. For video action recognition and video retrieval tasks, MCN outperforms state-of-the-art approaches on UCF101 and HMDB51 datasets. 
+            Propose the Meta-Contrastive Network (MCN), combining contrastive learning and meta-learning for pre-training; it outperforms state-of-the-art methods on UCF101 and HMDB51 for video action recognition and retrieval. 
           </p>
         </td>
       </tr>
@@ -967,7 +972,7 @@
     </div>
     <div class="exp-text">
       <div class="exp-name">
-        <a href="https://www.tsinghua.edu.cn/en/"><span class="papertitle">Tsinghua University</span></a>
+        <a href="https://www.tsinghua.edu.cn/en/"><span class="papertitle">LEAP Lab @ Tsinghua University</span></a>
       </div>
       <div class="exp-role">Research Assistant, Sep 2021 - Mar 2022</div>
       <div class="exp-desc">with Prof. <a href="http://www.gaohuang.net/">Gao Huang</a>, working on video recognition and visual grounding.</div>
