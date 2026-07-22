@@ -18,15 +18,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
       :root {
-        --yl-ink: #14243f;      /* deep navy ink */
-        --yl-muted: #5d6b86;    /* soft slate */
-        --yl-accent: #2f7fe0;   /* sky blue */
-        --yl-accent2: #37b6d3;  /* cyan-teal */
-        --yl-hot: #ff7a59;      /* warm star-flare */
-        --yl-accent-soft: rgba(47,127,224,0.08);
-        --yl-panel: rgba(255,255,255,0.74);   /* light glass panel */
-        --yl-line: rgba(30,50,90,0.10);
-        --yl-edge: rgba(47,127,224,0.26);
+        --yl-ink: #0a1b33;      /* near Oxford-blue ink for body text */
+        --yl-muted: #5a6786;    /* soft slate */
+        --yl-accent: #002147;   /* Oxford blue */
+        --yl-accent2: #1a4b8c;  /* lighter navy for gradients */
+        --yl-hot: #c8102e;      /* refined crimson for highlights */
+        --yl-rose: #c06089;     /* muted rose for the date tags */
+        --yl-accent-soft: rgba(0,33,71,0.06);
+        --yl-panel: rgba(255,255,255,0.78);   /* light glass panel */
+        --yl-line: rgba(0,33,71,0.12);
+        --yl-edge: rgba(0,33,71,0.22);
         --yl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         /* legacy aliases */
         --yl-g1: var(--yl-accent);
@@ -64,116 +65,64 @@
         color: var(--yl-ink);
       }
 
-      /* clean white base with the faintest cool wash */
+      /* pure white base */
       body {
         position: relative;
-        background:
-          radial-gradient(1100px 700px at 12% -12%, rgba(80,160,255,0.06), transparent 60%),
-          radial-gradient(1000px 620px at 100% 4%, rgba(120,205,235,0.05), transparent 58%),
-          #ffffff;
-        background-attachment: fixed;
+        background: #ffffff;
       }
-      /* drifting aurora ribbon behind everything */
-      body::before {
-        content: "";
-        position: fixed; inset: -20%;
-        z-index: -3; pointer-events: none;
-        background:
-          conic-gradient(from 210deg at 30% 30%, rgba(47,127,224,0.16), transparent 30%),
-          conic-gradient(from 20deg at 75% 60%, rgba(55,182,211,0.16), transparent 32%),
-          radial-gradient(600px 300px at 60% 20%, rgba(120,205,235,0.14), transparent 70%);
-        filter: blur(40px);
-        animation: yl-aurora 22s ease-in-out infinite;
-      }
-      /* faint moving scanlines for a HUD feel */
-      body::after {
-        content: "";
-        position: fixed; inset: 0;
-        z-index: -2; pointer-events: none;
-        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.035) 0 1px, transparent 1px 4px);
-        animation: yl-scan 12s linear infinite;
-        opacity: 0.6;
-      }
+      /* a single, very faint Oxford-blue hairline grid -- the only texture,
+         keeps the page feeling like precise graph paper without noise. */
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
         background-image:
-          radial-gradient(1.5px 1.5px at 30px 40px, rgba(70,140,235,0.5), transparent),
-          radial-gradient(1.4px 1.4px at 150px 100px, rgba(120,200,240,0.45), transparent),
-          radial-gradient(1.2px 1.2px at 90px 180px, rgba(90,160,255,0.45), transparent),
-          radial-gradient(1.6px 1.6px at 230px 230px, rgba(70,140,235,0.4), transparent),
-          radial-gradient(1.1px 1.1px at 300px 70px, rgba(120,205,235,0.4), transparent),
-          radial-gradient(1.3px 1.3px at 260px 310px, rgba(90,160,255,0.42), transparent),
-          linear-gradient(rgba(47,127,224,0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(47,127,224,0.05) 1px, transparent 1px);
-        background-size:
-          360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px, 360px 360px,
-          48px 48px, 48px 48px;
-        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
-        mask-image: radial-gradient(ellipse at 50% 30%, #000 55%, transparent 100%);
-        animation: yl-twinkle 5s ease-in-out infinite;
+          linear-gradient(rgba(0,33,71,0.028) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0,33,71,0.028) 1px, transparent 1px);
+        background-size: 56px 56px, 56px 56px;
+        -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
+        mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
       }
 
-      /* main content -- light glass panel with a soft aurora edge */
+      /* main content -- clean white sheet with a thin Oxford-blue frame */
       body > table:first-of-type {
         position: relative;
-        background: var(--yl-panel);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(47,127,224,0.18);
-        border-radius: 22px;
-        box-shadow: 0 20px 60px rgba(30,60,120,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
-        margin-top: 84px !important;
+        background: #ffffff;
+        border: 1px solid var(--yl-line);
+        border-top: 3px solid var(--yl-accent);
+        border-radius: 4px;
+        box-shadow: 0 10px 40px rgba(0,33,71,0.06);
+        margin-top: 88px !important;
         margin-bottom: 48px !important;
       }
-      /* animated light sheen sweeping across the panel's top edge */
-      body > table:first-of-type::before {
-        content: "";
-        position: absolute; left: 0; right: 0; top: 0; height: 2px;
-        border-radius: 22px 22px 0 0;
-        background: linear-gradient(90deg, transparent, var(--yl-accent), var(--yl-accent2), transparent);
-        background-size: 200% 100%;
-        animation: yl-sheen 7s ease-in-out infinite;
-        opacity: 0.9;
-      }
-      /* HUD corner ticks on the panel */
-      body > table:first-of-type::after {
-        content: "";
-        position: absolute; top: 10px; right: 12px;
-        width: 16px; height: 16px;
-        border-top: 2px solid var(--yl-accent2);
-        border-right: 2px solid var(--yl-accent2);
-        border-radius: 0 6px 0 0;
-        opacity: 0.55;
-      }
 
-      /* glassy sticky nav */
+      /* crisp sticky nav -- white with an Oxford-blue underline */
       #yl-nav {
         position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
         width: max-content; max-width: 94%; z-index: 900;
         display: flex; justify-content: center; align-items: center; gap: 2px; flex-wrap: wrap;
-        padding: 7px 12px;
-        background: rgba(255,255,255,0.7);
+        padding: 7px 14px;
+        background: rgba(255,255,255,0.92);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(109,94,252,0.2);
-        border-radius: 999px;
-        box-shadow: 0 6px 20px rgba(60,50,120,0.10);
+        border: 1px solid var(--yl-line);
+        border-radius: 4px;
+        box-shadow: 0 4px 16px rgba(0,33,71,0.06);
       }
       #yl-nav .brand {
         font-family: var(--yl-mono); font-weight: 700;
-        font-size: 14px; margin-right: 12px; color: var(--yl-ink);
+        font-size: 14px; margin-right: 14px; color: var(--yl-accent);
         letter-spacing: -0.3px;
       }
       #yl-nav .brand::before { content: "\1FA90 "; }
       #yl-nav a {
         font-family: var(--yl-mono);
         font-size: 12.5px; font-weight: 500; color: var(--yl-muted);
-        padding: 4px 10px; margin: 0 1px; border-radius: 999px;
-        border-bottom: none;
-        transition: color .18s ease, background-color .18s ease;
+        padding: 4px 8px; margin: 0 3px; border-radius: 0;
+        border-bottom: 1.5px solid transparent;
+        transition: color .18s ease, border-color .18s ease;
       }
       #yl-nav a:hover {
-        color: #fff;
-        background: var(--yl-accent);
+        color: var(--yl-accent);
+        border-bottom-color: var(--yl-accent);
+        background: transparent;
       }
 
       /* name -- cosmic-gradient geometric display with an orbiting planet */
@@ -182,7 +131,7 @@
         font-weight: 700 !important; letter-spacing: -2px !important;
         font-size: 32px !important;
         line-height: 1.02 !important;
-        background: linear-gradient(100deg, var(--yl-accent) 0%, var(--yl-accent2) 60%, #2f7fe0 100%);
+        background: linear-gradient(100deg, var(--yl-accent) 0%, var(--yl-accent2) 100%);
         -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
         color: var(--yl-accent) !important;
       }
@@ -226,7 +175,7 @@
         width: 92px;
         font-family: var(--yl-mono);
         font-size: 12.5px;
-        color: #e0629b;
+        color: var(--yl-rose);
         font-weight: 600;
         letter-spacing: -0.3px;
       }
@@ -234,11 +183,11 @@
       /* profile photo: soft cosmic frame */
       img.hoverZoomLink, td[style*="width:40%"] img {
         border-radius: 14px !important;
-        border: 1px solid rgba(109,94,252,0.25);
+        border: 1px solid rgba(0,33,71,0.25);
         box-shadow: 0 10px 30px rgba(60,50,120,0.16);
         transition: transform .3s ease, box-shadow .3s ease;
       }
-      img.hoverZoomLink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(109,94,252,0.28); }
+      img.hoverZoomLink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,33,71,0.28); }
 
       /* publication titles -- ink; cosmic underline on hover */
       .papertitle {
@@ -268,11 +217,11 @@
       }
       #pub-table > tbody > tr:hover > td {
         background: rgba(255,255,255,0.9);
-        border-color: rgba(109,94,252,0.3);
+        border-color: rgba(0,33,71,0.3);
       }
       #pub-table > tbody > tr:hover > td:first-child {
         border-left-color: var(--yl-accent);
-        box-shadow: -6px 0 20px -8px rgba(109,94,252,0.5);
+        box-shadow: -6px 0 20px -8px rgba(0,33,71,0.5);
       }
 
       /* thumbnails -- soft frame, gentle pop on hover */
@@ -280,11 +229,11 @@
         border-radius: 8px;
       }
       td[style*="width:25%"] img {
-        border: 1px solid rgba(109,94,252,0.22);
+        border: 1px solid rgba(0,33,71,0.22);
         box-shadow: 0 4px 14px rgba(60,50,120,0.10);
         transition: transform .2s ease, box-shadow .2s ease;
       }
-      td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 8px 22px rgba(109,94,252,0.25); }
+      td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 8px 22px rgba(0,33,71,0.25); }
 
       /* body hyperlinks -- cosmic indigo with an animated underline */
       td a:not(.brand),
@@ -318,7 +267,7 @@
         display: inline-flex; align-items: center; gap: 7px;
         padding: 6px 14px; border-radius: 999px;
         background: rgba(255,255,255,0.7);
-        border: 1px solid rgba(109,94,252,0.28);
+        border: 1px solid rgba(0,33,71,0.28);
         background-image: none;
         color: var(--yl-ink); font-weight: 600;
         transition: color .16s ease, background-color .16s ease, box-shadow .16s ease;
@@ -328,7 +277,7 @@
         background: var(--yl-accent);
         background-image: none;
         border-color: var(--yl-accent);
-        box-shadow: 0 6px 18px rgba(109,94,252,0.4);
+        box-shadow: 0 6px 18px rgba(0,33,71,0.4);
       }
       .name-links svg { width: 16px; height: 16px; flex: none; }
       .name-links .sep { display: none; }
@@ -348,7 +297,7 @@
         transform: translateX(3px);
         background: rgba(255,255,255,0.9);
         border-left-color: var(--yl-accent);
-        box-shadow: -8px 0 22px -10px rgba(109,94,252,0.5);
+        box-shadow: -8px 0 22px -10px rgba(0,33,71,0.5);
       }
       .exp-role {
         font-family: var(--yl-mono) !important;
@@ -363,7 +312,7 @@
       #pub-table em {
         font-family: var(--yl-mono); font-style: normal;
         font-size: 14px; font-weight: 600;
-        color: #3f7fbf;
+        color: #3a5c8a;
         letter-spacing: -0.2px;
       }
 
@@ -379,7 +328,7 @@
       .yl-badge.highlight {
         color: #fff;
         background: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
-        box-shadow: 0 2px 10px rgba(109,94,252,0.35);
+        box-shadow: 0 2px 10px rgba(0,33,71,0.35);
       }
       .yl-badge.award {
         color: #7a4a00;
