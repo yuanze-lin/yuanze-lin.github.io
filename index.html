@@ -15,7 +15,7 @@
     <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
       :root {
         --yl-ink: #1e2340;      /* deep indigo ink on light sky */
@@ -127,13 +127,16 @@
         color: var(--yl-accent) !important;
       }
       .name::after {
-        content: " \1FA90";
-        display: inline-block;
-        -webkit-text-fill-color: initial;
-        transform-origin: 60% 60%;
-        animation: yl-float 5s ease-in-out infinite;
-        font-size: 40px;
-        margin-left: 8px;
+        content: "\6797\8FDC\6CA9";
+        font-family: 'Ma Shan Zheng', 'Kaiti', 'STKaiti', serif;
+        -webkit-text-fill-color: #2a2340;
+        color: #2a2340;
+        font-weight: 400;
+        letter-spacing: 2px;
+        font-size: 34px;
+        margin-left: 16px;
+        vertical-align: 0.12em;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.5);
       }
 
       /* section headers -- geometric display with a cosmic star prefix */
@@ -372,10 +375,72 @@
       /* the inline red "Highlight"/"Best Paper" markers -> warm flare */
       font[color="red"], span[style*="color:red"], span[style*="color: red"] { color: var(--yl-hot) !important; }
 
-      @media (max-width: 700px) {
-        #yl-nav .brand { display: none; }
-        #yl-nav a { font-size: 12px; padding: 4px 9px; }
-        body > table:first-of-type { margin-top: 64px !important; }
+      @media (max-width: 720px) {
+        /* keep the page from overflowing sideways */
+        html, body { overflow-x: hidden; max-width: 100%; }
+        img { max-width: 100%; height: auto; }
+
+        /* nav: allow the pills to scroll horizontally instead of overflowing */
+        #yl-nav {
+          left: 0; right: 0; transform: none;
+          width: auto; max-width: none; border-radius: 0;
+          justify-content: flex-start; flex-wrap: nowrap;
+          overflow-x: auto; -webkit-overflow-scrolling: touch;
+          gap: 0; padding: 8px 10px;
+        }
+        #yl-nav .brand { flex: none; }
+        #yl-nav a { flex: none; white-space: nowrap; }
+
+        /* content panel spans the screen */
+        body > table:first-of-type {
+          margin-top: 60px !important;
+          margin-bottom: 20px !important;
+          border-radius: 14px;
+          width: 94% !important; max-width: 94% !important;
+        }
+
+        /* smaller hero name */
+        .name { font-size: 34px !important; letter-spacing: -1px !important; }
+        .name::after { font-size: 24px; margin-left: 8px; }
+        h2[style*="Impact"], .exp-title { font-size: 20px !important; }
+
+        /* stack the intro: text first, photo below, both full width */
+        body > table:first-of-type > tbody > tr > td > table:first-of-type tr { display: block; }
+        body > table:first-of-type > tbody > tr > td > table:first-of-type td {
+          display: block; width: 100% !important; max-width: 100% !important;
+          padding: 0 4% !important; box-sizing: border-box;
+        }
+        td[style*="width:40%"] { text-align: center; margin: 14px 0 6px; }
+        td[style*="width:40%"] img { max-width: 62% !important; }
+
+        /* publications + experience thumbnails: stack image above text */
+        #pub-table > tbody > tr > td { display: block; width: 100% !important; box-sizing: border-box; }
+        #pub-table > tbody > tr > td:first-child {
+          border-left: 3px solid var(--yl-edge);
+          border-bottom: none;
+          border-radius: 12px 12px 0 0;
+          text-align: center; padding-top: 14px !important; padding-bottom: 4px !important;
+        }
+        #pub-table > tbody > tr > td:last-child {
+          border-top: none; border-left: 3px solid var(--yl-edge);
+          border-radius: 0 0 12px 12px;
+        }
+        #pub-table td[style*="width:25%"] img { max-width: 220px !important; width: 70% !important; }
+
+        /* experience cards: logo above text */
+        .exp-item { grid-template-columns: 1fr !important; justify-items: start; }
+        .exp-list { padding: 0 4%; box-sizing: border-box; }
+        .exp-subhead { padding: 0 4%; }
+
+        /* news date sits on its own line so entries don't get clipped */
+        .news-date { width: auto !important; margin-right: 8px; }
+
+        /* let the wide section tables breathe */
+        td { word-break: break-word; }
+      }
+
+      @media (max-width: 380px) {
+        .name { font-size: 28px !important; }
       }
     </style>
     
