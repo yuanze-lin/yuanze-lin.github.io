@@ -70,27 +70,12 @@
         color: var(--yl-ink);
       }
 
-      /* pure white base */
+      /* pure white background */
       body {
         position: relative;
         background: #ffffff;
       }
-      /* a single quiet signature: the Oxford skyline ghosted along the bottom */
-      #yl-bg {
-        position: fixed; inset: 0; z-index: -1; pointer-events: none;
-      }
-      #yl-bg::after {
-        content: "";
-        position: fixed; left: 0; right: 0; bottom: 0;
-        height: 40vh;
-        background-image: url("images/oxford_skyline.webp");
-        background-repeat: no-repeat;
-        background-position: bottom center;
-        background-size: cover;
-        opacity: 0.28;
-        -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
-        mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.8) 40%, transparent 100%);
-      }
+      #yl-bg { display: none; }
 
       /* main content -- clean, borderless; sits directly on white */
       body > table:first-of-type {
