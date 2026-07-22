@@ -90,9 +90,9 @@
         content: "";
         position: fixed; inset: 0;
         z-index: -2; pointer-events: none;
-        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.02) 0 1px, transparent 1px 5px);
-        animation: yl-scan 14s linear infinite;
-        opacity: 0.5;
+        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.035) 0 1px, transparent 1px 4px);
+        animation: yl-scan 12s linear infinite;
+        opacity: 0.6;
       }
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -230,8 +230,6 @@
         font-weight: 600;
         letter-spacing: -0.3px;
       }
-      /* a touch more breathing room between news lines for elegance */
-      p[style*="line-height:0.8em"] { line-height: 1.9 !important; }
 
       /* profile photo: soft cosmic frame */
       img.hoverZoomLink, td[style*="width:40%"] img {
