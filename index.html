@@ -38,16 +38,16 @@
       body {
         position: relative;
         background:
-          radial-gradient(820px 460px at 6% -6%, rgba(75,91,214,0.06), transparent 60%),
-          radial-gradient(760px 460px at 100% 2%, rgba(123,92,255,0.05), transparent 58%),
-          linear-gradient(180deg, #f7f8fc 0%, #eef1f8 100%);
+          radial-gradient(820px 460px at 6% -6%, rgba(56,132,255,0.10), transparent 60%),
+          radial-gradient(760px 460px at 100% 2%, rgba(90,170,255,0.10), transparent 58%),
+          linear-gradient(180deg, #eaf3ff 0%, #dcebff 55%, #d3e6ff 100%);
         background-attachment: fixed;
       }
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
         background:
-          linear-gradient(rgba(75,91,214,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(75,91,214,0.04) 1px, transparent 1px);
+          linear-gradient(rgba(56,120,220,0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(56,120,220,0.05) 1px, transparent 1px);
         background-size: 40px 40px, 40px 40px;
         -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 62%, transparent 100%);
         mask-image: radial-gradient(ellipse at 50% 30%, #000 62%, transparent 100%);
@@ -129,6 +129,28 @@
       }
       a:hover .papertitle { background-size: 100% 2px; color: var(--yl-g1); }
 
+      /* each paper sits in its own light-edged card, matching the experience cards */
+      #pub-table { border-collapse: separate !important; border-spacing: 0 14px !important; }
+      #pub-table > tbody > tr > td {
+        background: rgba(255,255,255,0.6);
+        border-top: 1px solid var(--yl-line);
+        border-bottom: 1px solid var(--yl-line);
+        transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      #pub-table > tbody > tr > td:first-child {
+        border-left: 1px solid var(--yl-line);
+        border-radius: 14px 0 0 14px;
+      }
+      #pub-table > tbody > tr > td:last-child {
+        border-right: 1px solid var(--yl-line);
+        border-radius: 0 14px 14px 0;
+      }
+      #pub-table > tbody > tr:hover > td {
+        background: rgba(255,255,255,0.85);
+        border-color: rgba(75,91,214,0.30);
+        box-shadow: 0 8px 22px rgba(30,36,80,0.10);
+      }
+
       /* rounded, softly-shadowed publication + experience thumbnails */
       td[style*="width:25%"] img, .exp-logo img {
         border-radius: 10px;
@@ -138,6 +160,55 @@
         transition: transform .28s ease, box-shadow .28s ease;
       }
       td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(30,36,80,0.20); }
+
+      /* distinct, uniquely-highlighted hyperlinks in body content (nav, name,
+         paper titles keep their own styles) */
+      td a:not(.brand),
+      .exp-text a,
+      .name-links a {
+        color: var(--yl-g1);
+        font-weight: 600;
+        text-decoration: none;
+        background-image: linear-gradient(90deg, rgba(75,91,214,0.28), rgba(123,92,255,0.28));
+        background-size: 100% 1.5px;
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        border-radius: 2px;
+        transition: color .18s ease, background-color .18s ease, background-size .18s ease;
+      }
+      td a:not(.brand):hover,
+      .exp-text a:hover,
+      .name-links a:hover {
+        color: #fff;
+        background-color: var(--yl-g2);
+        background-image: none;
+        box-shadow: 0 0 0 3px rgba(123,92,255,0.18);
+        padding: 0 2px;
+      }
+      /* paper-title links shouldn't get the underline bar twice */
+      a:has(.papertitle) { background-image: none !important; box-shadow: none !important; }
+      a:has(.papertitle):hover { background-color: transparent !important; color: inherit !important; padding: 0 !important; }
+
+      /* contact / social row with icons */
+      .name-links {
+        display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+        gap: 6px 14px; margin-top: 6px;
+      }
+      .name-links a {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 5px 12px; border-radius: 999px;
+        background: rgba(255,255,255,0.55);
+        border: 1px solid var(--yl-line);
+        background-image: none;
+      }
+      .name-links a:hover {
+        color: #fff; padding: 5px 12px;
+        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
+        box-shadow: 0 6px 16px rgba(75,91,214,0.28);
+        transform: translateY(-1px);
+      }
+      .name-links svg { width: 15px; height: 15px; flex: none; }
+      .name-links .sep { display: none; }
 
       /* experience cards */
       .exp-item {
@@ -213,11 +284,23 @@
 		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; The applicability of large language models (LLMs) </p>
 <!-- 		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Self-supervised representation learning </p> -->
                 </p>
-                <p style="text-align:center">
-                  <a href="mailto:yuanze.lin@cs.ox.ac.uk">yuanze.lin [at] cs.ox.ac.uk</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/citations?user=0WFC2w0AAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
-                  <a href="https://github.com/yuanze-lin/">GitHub</a> &nbsp;/&nbsp;
-                  <a href="https://www.linkedin.com/in/yuanze-lin-720543139/">LinkedIn</a>
+                <p class="name-links">
+                  <a href="mailto:yuanze.lin@cs.ox.ac.uk" title="Email">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
+                    yuanze.lin [at] cs.ox.ac.uk
+                  </a>
+                  <a href="https://scholar.google.com/citations?user=0WFC2w0AAAAJ&hl=en" title="Google Scholar">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 8.5l11 6.5 9-5.32V17h2V8.5L12 2z"></path><path d="M6 12.9v3.6c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.6l-6 3.55-6-3.55z" fill="currentColor"></path></svg>
+                    Google Scholar
+                  </a>
+                  <a href="https://github.com/yuanze-lin/" title="GitHub">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"></path></svg>
+                    GitHub
+                  </a>
+                  <a href="https://www.linkedin.com/in/yuanze-lin-720543139/" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
+                    LinkedIn
+                  </a>
                 </p>
 <!-- 	        <p style="color:red">  <b> I'm actively seeking research intern positions, feel free to contact me </b> 😊 </p> -->
               </td>
@@ -265,7 +348,7 @@
             </tr>
           </tbody></table>
 
-        <table style="width:100%;margin-top:-40px;margin-right:auto;margin-left:auto;"><tbody>
+        <table id="pub-table" style="width:100%;margin-top:-40px;margin-right:auto;margin-left:auto;"><tbody>
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
 	    <img src='images/IllumiCraft.png' width="160" height="130">
