@@ -3,25 +3,200 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title style="font-family:Comic Sans MS; font-size:48px">Yuanze Lin</title>
+    <title>Yuanze Lin</title>
 
     <meta name="author" content="Yuanze Lin">
+    <meta name="description" content="Yuanze Lin — PhD student at the University of Oxford. Research on diffusion models, vision-language models, and multimodal large language models.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/oxford1.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
+    <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --yl-ink: #17203a;
+        --yl-muted: #5a6480;
+        --yl-g1: #4b5bd6;   /* indigo  */
+        --yl-g2: #7b5cff;   /* violet  */
+        --yl-g3: #12b8b0;   /* teal    */
+        --yl-line: rgba(20,26,54,0.10);
+      }
+
+      html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+
+      /* base typography refresh -- keeps Lato as fallback, adds Inter on top */
+      body, td, th, tr, p, a, strong, li {
+        font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif !important;
+        color: var(--yl-ink);
+      }
+
+      /* faint, professional futuristic backdrop: soft slate wash + fixed grid +
+         gentle aurora, all very low contrast so text stays crisp. */
+      body {
+        position: relative;
+        background:
+          radial-gradient(820px 460px at 6% -6%, rgba(75,91,214,0.06), transparent 60%),
+          radial-gradient(760px 460px at 100% 2%, rgba(123,92,255,0.05), transparent 58%),
+          linear-gradient(180deg, #f7f8fc 0%, #eef1f8 100%);
+        background-attachment: fixed;
+      }
+      #yl-bg {
+        position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background:
+          linear-gradient(rgba(75,91,214,0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(75,91,214,0.04) 1px, transparent 1px);
+        background-size: 40px 40px, 40px 40px;
+        -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 62%, transparent 100%);
+        mask-image: radial-gradient(ellipse at 50% 30%, #000 62%, transparent 100%);
+      }
+
+      /* main content card floats above the backdrop */
+      body > table:first-of-type {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid var(--yl-line);
+        border-radius: 18px;
+        box-shadow: 0 18px 60px rgba(30,36,80,0.10);
+        margin-top: 74px !important;
+        margin-bottom: 40px !important;
+      }
+
+      /* glassy sticky nav */
+      #yl-nav {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+        display: flex; justify-content: center; align-items: center; gap: 4px; flex-wrap: wrap;
+        padding: 9px 14px;
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--yl-line);
+      }
+      #yl-nav .brand {
+        font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+        font-size: 15px; margin-right: 12px; color: var(--yl-ink);
+        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      }
+      #yl-nav a {
+        font-size: 13.5px; font-weight: 600; color: var(--yl-muted);
+        padding: 5px 12px; border-radius: 999px; transition: all .2s ease;
+      }
+      #yl-nav a:hover {
+        color: #fff; background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
+        transform: translateY(-1px); box-shadow: 0 5px 14px rgba(75,91,214,0.28);
+      }
+
+      /* gradient name in the Space Grotesk display face */
+      .name {
+        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
+        font-weight: 700 !important; letter-spacing: -0.5px;
+        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2), var(--yl-g3));
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      }
+
+      /* refined section headers -- replace Impact with a clean display face and
+         add a gradient accent bar; keep the existing icon + <hr>. */
+      h2[style*="Impact"], .exp-title {
+        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
+        font-size: 22px !important; font-weight: 700 !important;
+        letter-spacing: -0.2px; color: var(--yl-ink) !important;
+      }
+      /* turn the plain <hr> under each header into a soft gradient rule */
+      hr {
+        border: none; height: 2px;
+        background: linear-gradient(90deg, var(--yl-g1), rgba(123,92,255,0.15) 70%, transparent);
+        opacity: 0.9;
+      }
+
+      /* profile photo: rounded, framed, subtle lift */
+      img.hoverZoomLink, td[style*="width:40%"] img {
+        border-radius: 14px !important;
+        box-shadow: 0 10px 30px rgba(30,36,80,0.16);
+        transition: transform .3s ease, box-shadow .3s ease;
+      }
+      img.hoverZoomLink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(30,36,80,0.22); }
+
+      /* publication rows: hover-lift card feel + rounded thumbnails */
+      .papertitle {
+        font-family: 'Inter', sans-serif !important; font-weight: 700 !important;
+        font-size: 15px !important; color: var(--yl-ink);
+        background-image: linear-gradient(90deg, var(--yl-g1), var(--yl-g2));
+        background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%;
+        transition: background-size .25s ease, color .2s ease;
+      }
+      a:hover .papertitle { background-size: 100% 2px; color: var(--yl-g1); }
+
+      /* rounded, softly-shadowed publication + experience thumbnails */
+      td[style*="width:25%"] img, .exp-logo img {
+        border-radius: 10px;
+      }
+      td[style*="width:25%"] img {
+        box-shadow: 0 6px 18px rgba(30,36,80,0.12);
+        transition: transform .28s ease, box-shadow .28s ease;
+      }
+      td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 12px 28px rgba(30,36,80,0.20); }
+
+      /* experience cards */
+      .exp-item {
+        background: rgba(255,255,255,0.6);
+        border: 1px solid var(--yl-line);
+        border-radius: 14px;
+        padding: 10px 16px !important;
+        height: auto !important;
+        margin-bottom: 12px;
+        transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      }
+      .exp-item + .exp-item { margin-top: 0 !important; }
+      .exp-item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(75,91,214,0.35);
+        box-shadow: 0 10px 26px rgba(30,36,80,0.12);
+      }
+      .exp-role { color: var(--yl-g1) !important; }
+
+      /* accent + hover for the contact / social links row */
+      a { transition: color .18s ease; }
+
+      /* scroll progress bar */
+      #yl-progress {
+        position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 950;
+        background: linear-gradient(90deg, var(--yl-g1), var(--yl-g2), var(--yl-g3));
+        box-shadow: 0 0 10px rgba(75,91,214,0.45);
+      }
+
+      @media (max-width: 700px) {
+        #yl-nav .brand { display: none; }
+        #yl-nav a { font-size: 12px; padding: 4px 9px; }
+        body > table:first-of-type { margin-top: 64px !important; }
+      }
+    </style>
     
   </head>
 
   <body>
+    <div id="yl-bg"></div>
+    <div id="yl-progress"></div>
+    <nav id="yl-nav">
+      <span class="brand">Yuanze Lin</span>
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+    </nav>
+    <a id="about"></a>
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr style="padding:0px">
               <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align:center;font-family:Comic Sans MS;font-size:32px">
+                <p class="name" style="text-align:center;font-size:34px">
                   Yuanze Lin
-                </p> 
+                </p>
                 <p>I am a PhD student in the Computer Science Department at the <a href="https://www.ox.ac.uk/">University of Oxford</a>, where I work with Prof. Ronald Clark. My research focuses on diffusion and vision-language models.
 <!--                 <p>I am a PhD student in the Computer Science Department at the <a href="https://www.ox.ac.uk/">University of Oxford</a>, where I also collaborate with Prof. <a href="https://scholar.google.com/citations?hl=en&user=kPxa2w0AAAAJ"> Philip Torr</a>. My research focuses on diffusion and vision-language models. -->
                 <p>
@@ -55,7 +230,7 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2 style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/news.png", style="width:32px;height:auto" /> &nbsp; News</h2>
+                <h2 id="news" style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/news.png", style="width:32px;height:auto" /> &nbsp; News</h2>
 		<hr />
 		<p style="line-height:0.8em;"> [07/2026]&nbsp;&nbsp; Started a research internship at <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-cambridge/"> Microsoft Research Cambridge</a>. </font></p>
 		<p style="line-height:0.8em;"> [09/2025]&nbsp;&nbsp; <a href="https://arxiv.org/pdf/2506.03150"> IllumiCraft</a> accepted to NeurIPS 2025.</span></font></p>
@@ -82,7 +257,7 @@
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:20px;width:100%;vertical-align:middle;">
-                <h2 style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/research.png", style="width:32px;height:auto;" /> &nbsp;Selected Publications</h2>
+                <h2 id="publications" style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/research.png", style="width:32px;height:auto;" /> &nbsp;Selected Publications</h2>
 		<hr />
                 <p>
                  Papers are sorted by recency, * denotes equal contribution.
@@ -553,7 +728,7 @@
   <tbody>
     <tr>
       <td class="exp-header">
-        <h2 class="exp-title">
+        <h2 class="exp-title" id="experience">
           <img src="icons/experience2.png" style="width:32px;height:auto;vertical-align:middle;" />
           &nbsp;Experiences
         </h2>
@@ -674,7 +849,7 @@
          <table style="width:100%;padding-top:20px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-                <h2 style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/activity.png", style="width:32px;height:auto;" /> &nbsp; Professional Services</h2>
+                <h2 id="services" style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/activity.png", style="width:32px;height:auto;" /> &nbsp; Professional Services</h2>
 		<hr />
 		<p style="line-height:0.8em;font-size:14px;"> <em> Program Comittee: AAAI 2025, AAAI 2026 </em> </p> 
 		<p style="line-height:0.8em;font-size:14px;"> <em> Journal Reviewer: IJCV 2025 </em> </p> 
@@ -705,6 +880,20 @@
               </td>
             </tr>
           </tbody></table>
-          
+
+    <script>
+      (function () {
+        var bar = document.getElementById('yl-progress');
+        function onScroll() {
+          var h = document.documentElement;
+          var scrolled = h.scrollTop || document.body.scrollTop;
+          var height = (h.scrollHeight - h.clientHeight) || 1;
+          bar.style.width = (scrolled / height * 100) + '%';
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+
   </body>
 </html>
