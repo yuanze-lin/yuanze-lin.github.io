@@ -295,16 +295,36 @@
         font-size: 16px !important;
       }
 
-      /* venue + year under each paper -> monospace tag */
+      /* venue + year under each paper -> monospace tag, soft cosmic tint */
       #pub-table em {
         font-family: var(--yl-mono); font-style: normal;
-        font-size: 14px; font-weight: 500;
-        color: var(--yl-muted);
+        font-size: 14px; font-weight: 600;
+        color: #8a6fd6;
         letter-spacing: -0.2px;
       }
 
-      /* let experience descriptions wrap fully instead of truncating to one
-         ellipsized line (the template hard-caps height + nowrap). */
+      /* award / highlight badges -- colorful pills */
+      .yl-badge {
+        display: inline-block;
+        font-family: var(--yl-mono);
+        font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+        padding: 2px 9px; border-radius: 999px;
+        vertical-align: middle; white-space: nowrap;
+        line-height: 1.5;
+      }
+      .yl-badge.highlight {
+        color: #fff;
+        background: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
+        box-shadow: 0 2px 10px rgba(109,94,252,0.35);
+      }
+      .yl-badge.award {
+        color: #7a4a00;
+        background: linear-gradient(90deg, #ffd93d, #ffb020);
+        box-shadow: 0 2px 10px rgba(255,176,32,0.4);
+        text-decoration: none;
+      }
+      a.yl-badge.award { background-image: linear-gradient(90deg, #ffd93d, #ffb020) !important; color: #7a4a00 !important; }
+      a.yl-badge.award:hover { filter: brightness(1.05); color: #7a4a00 !important; }
       .exp-item { grid-template-columns: 120px 1fr !important; align-items: center !important; }
       .exp-item .exp-text { height: auto !important; overflow: visible !important; }
       .exp-item .exp-name,
@@ -446,7 +466,7 @@
         <p style="line-height:0.8em;"> <span class="news-date">[09/2022]</span> <a href="https://papers.nips.cc/paper_files/paper/2022/file/44956951349095f74492a5471128a7e0-Paper-Conference.pdf"> REVIVE</a> accepted to NeurIPS 2022. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[03/2022]</span> <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Jiang_Pseudo-Q_Generating_Pseudo_Language_Queries_for_Visual_Grounding_CVPR_2022_paper.pdf"> Pseudo-Q</a> and <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_AdaFocus_V2_End-to-End_Training_of_Spatial_Dynamic_Networks_for_Video_CVPR_2022_paper.pdf"> AdaFocus V2</a> accepted to CVPR 2022. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[07/2021]</span> <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Lin_Self-Supervised_Video_Representation_Learning_With_Meta-Contrastive_Network_ICCV_2021_paper.pdf"> MCN</a> accepted to ICCV 2021. </p>
-        <p style="line-height:0.8em;"> <span class="news-date">[06/2021]</span> <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf"> EVA-GCN</a> accepted to CVPR 2021 AMFG Workshop and won <b> Best Paper Award! </b> </p>
+        <p style="line-height:0.8em;"> <span class="news-date">[06/2021]</span> <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf"> EVA-GCN</a> accepted to CVPR 2021 AMFG Workshop and won <span class="yl-badge award">🏆 Best Paper Award</span> </p>
         </td>
         <tr>
         </tbody></table>
@@ -512,7 +532,7 @@
           <a href="https://www.ron-clark.com/">Ronald Clark</a>,
           <a href="https://eng.ox.ac.uk/people/philip-torr/">Philip Torr</a>
           <br>
-          <em>CVPR</em>, 2025&nbsp; <span style="color: red;"><strong>(Highlight)</strong></span> 
+          <em>CVPR</em>, 2025&nbsp; <span class="yl-badge highlight">★ Highlight</span>
           <br>
           <a href="https://arxiv.org/pdf/2412.09612">ArXiv</a>
 	  /
@@ -779,7 +799,7 @@
           <a href="https://scholar.google.com/citations?hl=zh-CN&user=6aYncPAAAAAJ">Shentong Mo</a>,
           <strong>Yuanze Lin</strong>
           <br>
-          <em>CVPR AMFG Workshop</em>, 2021 &nbsp <a href="images/workshop_best_paper.jpg"><font color="red"><strong>(Best Paper Award)</strong></font></a> 
+          <em>CVPR AMFG Workshop</em>, 2021 &nbsp <a href="images/workshop_best_paper.jpg" class="yl-badge award">🏆 Best Paper Award</a> 
           <br>
           <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf">Paper</a> /
           <a href="https://github.com/stoneMo/EVA-GCN">Code</a> /
