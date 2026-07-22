@@ -18,17 +18,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
       :root {
-        --yl-ink: #2a3242;      /* soft charcoal-navy for body text */
-        --yl-muted: #7a8296;    /* light slate */
-        --yl-accent: #1f5fb0;   /* readable Oxford-blue-derived blue for links */
-        --yl-deep: #002147;     /* true Oxford blue -- structural accents only */
-        --yl-accent2: #3b7dd8;  /* lighter blue for gradients */
-        --yl-hot: #c8102e;      /* refined crimson for highlights */
-        --yl-rose: #c06089;     /* muted rose for the date tags */
-        --yl-accent-soft: rgba(31,95,176,0.07);
+        --yl-ink: #33404f;      /* soft slate for body text */
+        --yl-muted: #8791a3;    /* light grey */
+        --yl-accent: #3d8bd4;   /* bright sunny sky-blue for links */
+        --yl-deep: #2b6fb0;     /* lighter Oxford-derived blue for accents */
+        --yl-accent2: #57b7e6;  /* airy cyan-blue for gradients */
+        --yl-hot: #ef5b56;      /* warm coral for highlights */
+        --yl-rose: #e06a9c;     /* bright rose for the date tags */
+        --yl-accent-soft: rgba(61,139,212,0.08);
         --yl-panel: rgba(255,255,255,0.78);
-        --yl-line: rgba(0,33,71,0.12);
-        --yl-edge: rgba(31,95,176,0.22);
+        --yl-line: rgba(43,111,176,0.14);
+        --yl-edge: rgba(61,139,212,0.24);
         --yl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
         /* legacy aliases */
         --yl-g1: var(--yl-accent);
@@ -43,6 +43,10 @@
       @keyframes yl-twinkle {
         0%,100% { opacity: 0.45; }
         50% { opacity: 0.9; }
+      }
+      @keyframes yl-hue {
+        0%,100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
       }
       @keyframes yl-aurora {
         0%   { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1.1); }
@@ -71,16 +75,29 @@
         position: relative;
         background: #ffffff;
       }
-      /* a single, very faint Oxford-blue hairline grid -- the only texture,
-         keeps the page feeling like precise graph paper without noise. */
+      /* faint Oxford skyline anchored to the bottom, plus a hairline grid --
+         the skyline is softened via opacity + a top-fade mask so text stays
+         perfectly readable. */
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
         background-image:
-          linear-gradient(rgba(0,33,71,0.028) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0,33,71,0.028) 1px, transparent 1px);
+          linear-gradient(rgba(43,111,176,0.028) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(43,111,176,0.028) 1px, transparent 1px);
         background-size: 56px 56px, 56px 56px;
         -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
         mask-image: radial-gradient(ellipse at 50% 20%, #000 60%, transparent 100%);
+      }
+      #yl-bg::after {
+        content: "";
+        position: fixed; left: 0; right: 0; bottom: 0;
+        height: 46vh;
+        background-image: url("images/oxford_skyline.webp");
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: cover;
+        opacity: 0.16;
+        -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%);
+        mask-image: linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 35%, transparent 100%);
       }
 
       /* main content -- clean white sheet with a thin Oxford-blue frame */
@@ -126,15 +143,17 @@
         background: transparent;
       }
 
-      /* name -- cosmic-gradient geometric display with an orbiting planet */
+      /* name -- vivid animated artistic multicolor gradient */
       .name {
         font-family: 'Space Grotesk', 'Inter', sans-serif !important;
         font-weight: 700 !important; letter-spacing: -2px !important;
         font-size: 32px !important;
         line-height: 1.02 !important;
-        background: linear-gradient(100deg, var(--yl-deep) 0%, var(--yl-accent) 100%);
+        background: linear-gradient(100deg, #ff8a3d 0%, #ef5b8c 28%, #a45bff 55%, #3d8bd4 80%, #2bd0c0 100%);
+        background-size: 220% 100%;
         -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-        color: var(--yl-deep) !important;
+        color: var(--yl-accent) !important;
+        animation: yl-hue 9s ease-in-out infinite;
       }
       .name::after {
         content: "\6797\8FDC\6CFD";
@@ -465,7 +484,7 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        body::before, body::after, #yl-bg,
+        body::before, body::after, #yl-bg, .name,
         body > table:first-of-type::before,
         .name::after { animation: none !important; }
       }
