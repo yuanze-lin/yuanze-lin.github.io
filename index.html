@@ -64,14 +64,13 @@
         color: var(--yl-ink);
       }
 
-      /* light sky-blue -- clean airy sky with soft washes */
+      /* clean white base with the faintest cool wash */
       body {
         position: relative;
         background:
-          radial-gradient(1100px 700px at 12% -12%, rgba(80,160,255,0.16), transparent 60%),
-          radial-gradient(1000px 620px at 100% 4%, rgba(120,205,235,0.14), transparent 58%),
-          radial-gradient(950px 700px at 50% 118%, rgba(90,150,235,0.10), transparent 60%),
-          linear-gradient(180deg, #eaf4ff 0%, #e2f0ff 55%, #edf7ff 100%);
+          radial-gradient(1100px 700px at 12% -12%, rgba(80,160,255,0.06), transparent 60%),
+          radial-gradient(1000px 620px at 100% 4%, rgba(120,205,235,0.05), transparent 58%),
+          #ffffff;
         background-attachment: fixed;
       }
       /* drifting aurora ribbon behind everything */
@@ -91,9 +90,9 @@
         content: "";
         position: fixed; inset: 0;
         z-index: -2; pointer-events: none;
-        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.035) 0 1px, transparent 1px 4px);
-        animation: yl-scan 12s linear infinite;
-        opacity: 0.6;
+        background: repeating-linear-gradient(0deg, rgba(20,60,120,0.02) 0 1px, transparent 1px 5px);
+        animation: yl-scan 14s linear infinite;
+        opacity: 0.5;
       }
       #yl-bg {
         position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -227,9 +226,12 @@
         width: 92px;
         font-family: var(--yl-mono);
         font-size: 12.5px;
-        color: var(--yl-accent2);
+        color: #e0629b;
         font-weight: 600;
+        letter-spacing: -0.3px;
       }
+      /* a touch more breathing room between news lines for elegance */
+      p[style*="line-height:0.8em"] { line-height: 1.9 !important; }
 
       /* profile photo: soft cosmic frame */
       img.hoverZoomLink, td[style*="width:40%"] img {
