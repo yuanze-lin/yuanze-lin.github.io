@@ -91,22 +91,13 @@
         border-bottom-color: var(--yl-accent);
       }
 
-      /* name -- bold geometric display with a monospace kicker label above */
+      /* name -- bold geometric display */
       .name {
         font-family: 'Space Grotesk', 'Inter', sans-serif !important;
         font-weight: 700 !important; letter-spacing: -1.5px !important;
         color: var(--yl-ink) !important;
         font-size: 46px !important;
         line-height: 1.05 !important;
-      }
-      .name::before {
-        content: "PhD · University of Oxford";
-        display: block;
-        font-family: var(--yl-mono);
-        font-size: 12px; font-weight: 500; letter-spacing: 1px;
-        color: var(--yl-accent);
-        margin-bottom: 8px;
-        text-transform: none;
       }
 
       /* section headers -- geometric display with a monospace // prefix */
@@ -268,7 +259,7 @@
       /* venue + year under each paper -> monospace tag */
       #pub-table em {
         font-family: var(--yl-mono); font-style: normal;
-        font-size: 12.5px; font-weight: 500;
+        font-size: 14px; font-weight: 500;
         color: var(--yl-muted);
         letter-spacing: -0.2px;
       }
