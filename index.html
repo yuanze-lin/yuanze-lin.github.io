@@ -12,8 +12,14 @@
     <link rel="shortcut icon" href="images/favicon-yl.svg" type="image/svg+xml">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
-    <!-- Umami analytics (invisible, open-source): visitor counts + countries, daily/monthly/yearly at cloud.umami.is -->
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="67a8c9e2-058a-4777-98b0-8f3aa190e3ba"></script>
+    <!-- Google Analytics 4 (invisible): visitor counts + country/region/city, daily/monthly/yearly -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG9XTJQVS8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EG9XTJQVS8');
+    </script>
 
     <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
