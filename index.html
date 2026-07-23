@@ -1197,8 +1197,11 @@
 	  
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
-              <td style="padding:10px 20px;width:100%;vertical-align:middle;text-align:center;">
-                <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=SHS3ezNrX81AiISKLa3qG4UAwm0PuzToTECwHCgZF5I"></script>
+              <td style="padding:0;width:100%;vertical-align:middle;">
+                <!-- MapMyVisitors: hidden off-screen so it still records visits without showing the globe -->
+                <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                  <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=SHS3ezNrX81AiISKLa3qG4UAwm0PuzToTECwHCgZF5I"></script>
+                </div>
               </td>
             </tr>
           </tbody></table>
