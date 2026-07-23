@@ -21,485 +21,23 @@
       gtag('config', 'G-EG9XTJQVS8');
     </script>
 
-    <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
+    <!-- minimal academic styling -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --yl-ink: #33404f;      /* soft slate for body text */
-        --yl-muted: #8791a3;    /* light grey */
-        --yl-accent: #007fff;   /* azure blue for links */
-        --yl-deep: #2b6fb0;     /* lighter Oxford-derived blue for accents */
-        --yl-accent2: #57b7e6;  /* airy cyan-blue for gradients */
-        --yl-hot: #ef5b56;      /* warm coral for highlights */
-        --yl-rose: #e06a9c;     /* bright rose for the date tags */
-        --yl-accent-soft: rgba(61,139,212,0.08);
-        --yl-panel: rgba(255,255,255,0.78);
-        --yl-line: rgba(43,111,176,0.14);
-        --yl-edge: rgba(61,139,212,0.24);
-        --yl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-        /* legacy aliases */
-        --yl-g1: var(--yl-accent);
-        --yl-g2: var(--yl-accent2);
-        --yl-g3: var(--yl-hot);
-      }
-
-      @keyframes yl-float {
-        0%,100% { transform: translateY(0) rotate(0deg); }
-        50% { transform: translateY(-8px) rotate(6deg); }
-      }
-      @keyframes yl-twinkle {
-        0%,100% { opacity: 0.45; }
-        50% { opacity: 0.9; }
-      }
-      @keyframes yl-hue {
-        0%,100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-      }
-      @keyframes yl-aurora {
-        0%   { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1.1); }
-        50%  { transform: translate3d(4%, 3%, 0) rotate(8deg) scale(1.25); }
-        100% { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1.1); }
-      }
-      @keyframes yl-scan {
-        0% { background-position: 0 0; }
-        100% { background-position: 0 100vh; }
-      }
-      @keyframes yl-sheen {
-        0% { background-position: -150% 0; }
-        60%,100% { background-position: 250% 0; }
-      }
-
-      html { scroll-behavior: smooth; scroll-padding-top: 64px; }
-
-      /* base typography refresh -- keeps Lato as fallback, adds Inter on top */
-      body, td, th, tr, p, a, strong, li {
-        font-family: 'Inter', 'Lato', Verdana, Helvetica, sans-serif !important;
-        color: var(--yl-ink);
-      }
-
-      /* pure white background */
-      body {
-        position: relative;
-        background: #ffffff;
-      }
-      #yl-bg { display: none; }
-
-      /* main content -- clean, borderless; sits directly on white */
-      body > table:first-of-type {
-        position: relative;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        margin-top: 76px !important;
-        margin-bottom: 48px !important;
-      }
-
-      /* crisp sticky nav -- white with an Oxford-blue underline */
-      #yl-nav {
-        position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
-        width: max-content; max-width: 94%; z-index: 900;
-        display: flex; justify-content: center; align-items: center; gap: 2px; flex-wrap: wrap;
-        padding: 7px 14px;
-        background: rgba(255,255,255,0.92);
-        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        border: 1px solid var(--yl-line);
-        border-radius: 4px;
-        box-shadow: 0 4px 16px rgba(0,33,71,0.06);
-      }
-      #yl-nav .brand {
-        font-family: var(--yl-mono); font-weight: 700;
-        font-size: 14px; margin-right: 14px; color: var(--yl-accent);
-        letter-spacing: -0.3px;
-      }
-      #yl-nav .brand::before { content: "\1FA90 "; }
-      #yl-nav a {
-        font-family: var(--yl-mono);
-        font-size: 12.5px; font-weight: 500; color: var(--yl-muted);
-        padding: 4px 8px; margin: 0 3px; border-radius: 0;
-        border-bottom: 1.5px solid transparent;
-        transition: color .18s ease, border-color .18s ease;
-      }
-      #yl-nav a:hover {
-        color: var(--yl-accent);
-        border-bottom-color: var(--yl-accent);
-        background: transparent;
-      }
-
-      /* name -- vivid animated artistic multicolor gradient */
-      .name {
-        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
-        font-weight: 700 !important; letter-spacing: -2px !important;
-        font-size: 32px !important;
-        line-height: 1.02 !important;
-        background: linear-gradient(100deg, #ff8a3d 0%, #ef5b8c 28%, #a45bff 55%, #3d8bd4 80%, #2bd0c0 100%);
-        background-size: 220% 100%;
-        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-        color: var(--yl-accent) !important;
-        animation: yl-hue 9s ease-in-out infinite;
-      }
-      .name::after {
-        content: "\6797\8FDC\6CFD";
-        font-family: 'Ma Shan Zheng', 'Kaiti', 'STKaiti', serif;
-        -webkit-text-fill-color: #2a2340;
-        color: #2a2340;
-        font-weight: 400;
-        letter-spacing: 3px;
-        font-size: 32px;
-        margin-left: 16px;
-        vertical-align: -0.02em;
-        text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-      }
-
-      /* section headers -- geometric display with a cosmic star prefix */
-      h2[style*="Impact"], .exp-title {
-        font-family: 'Space Grotesk', 'Inter', sans-serif !important;
-        font-size: 25px !important; font-weight: 700 !important;
-        letter-spacing: -0.8px !important; color: var(--yl-ink) !important;
-        display: inline-block !important;
-        position: relative;
-      }
-      h2[style*="Impact"] img, .exp-title img { display: none !important; }
-      h2[style*="Impact"]::before, .exp-title::before {
-        content: "\2726 ";
-        color: var(--yl-accent2);
-        font-size: 20px; letter-spacing: 0;
-      }
-      /* soft aurora rule under each header */
-      hr {
-        border: none; height: 2px;
-        background: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2) 55%, transparent);
-        opacity: 0.7;
-      }
-
-      /* News: monospace fixed-width date column -- a punchy accent tag */
-      .news-date {
-        display: inline-block;
-        width: 92px;
-        font-family: var(--yl-mono);
-        font-size: 12.5px;
-        color: var(--yl-rose);
-        font-weight: 600;
-        letter-spacing: -0.3px;
-      }
-      /* compact News: tight, even spacing between entries */
-      p[style*="line-height:0.8em"] {
-        line-height: 1.25 !important;
-        margin: 1px 0 !important;
-      }
-      /* the award badge in the last news line adds height -- keep the row even */
-      p[style*="line-height:0.8em"] .yl-badge { vertical-align: baseline; line-height: 1; padding-top: 1px; padding-bottom: 1px; }
-      p[style*="line-height:0.6em"] {
-        line-height: 1.25 !important;
-        margin: 1px 0 !important;
-      }
-
-      /* profile photo: soft cosmic frame */
-      img.hoverZoomLink, td[style*="width:40%"] img {
-        border-radius: 14px !important;
-        border: 1px solid rgba(0,33,71,0.25);
-        box-shadow: 0 10px 30px rgba(60,50,120,0.16);
-        transition: transform .3s ease, box-shadow .3s ease;
-      }
-      img.hoverZoomLink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,33,71,0.28); }
-
-      /* publication titles -- ink; cosmic underline on hover */
-      .papertitle {
-        font-family: 'Space Grotesk', 'Inter', sans-serif !important; font-weight: 700 !important;
-        font-size: 16px !important; letter-spacing: -0.3px; color: var(--yl-ink);
-        background-image: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
-        background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%;
-        transition: background-size .25s ease, color .2s ease;
-      }
-      a:hover .papertitle { background-size: 100% 2px; color: var(--yl-accent); }
-
-      /* compact vertical rhythm -- tighter section padding & card gaps */
-      body > table:first-of-type td[style*="padding:20px"] { padding: 12px 20px !important; }
-      #pub-table { border-collapse: separate !important; border-spacing: 0 10px !important; }
-      #pub-table > tbody > tr > td {
-        background: rgba(255,255,255,0.62);
-        border-top: 1px solid var(--yl-line);
-        border-bottom: 1px solid var(--yl-line);
-        transition: background .2s ease, box-shadow .2s ease, border-color .2s ease;
-      }
-      #pub-table > tbody > tr > td:first-child {
-        border-left: 3px solid var(--yl-edge);
-        border-radius: 12px 0 0 12px;
-      }
-      #pub-table > tbody > tr > td:last-child {
-        border-right: 1px solid var(--yl-line);
-        border-radius: 0 12px 12px 0;
-      }
-      #pub-table > tbody > tr:hover > td {
-        background: rgba(255,255,255,0.9);
-        border-color: rgba(0,33,71,0.3);
-      }
-      #pub-table > tbody > tr:hover > td:first-child {
-        border-left-color: var(--yl-accent);
-        box-shadow: -6px 0 20px -8px rgba(0,33,71,0.5);
-      }
-
-      /* thumbnails -- soft frame, gentle pop on hover */
-      td[style*="width:25%"] img, .exp-logo img {
-        border-radius: 8px;
-      }
-      td[style*="width:25%"] img {
-        border: 1px solid rgba(0,33,71,0.22);
-        box-shadow: 0 4px 14px rgba(60,50,120,0.10);
-        transition: transform .2s ease, box-shadow .2s ease;
-      }
-      td[style*="width:25%"] img:hover { transform: scale(1.03); box-shadow: 0 8px 22px rgba(0,33,71,0.25); }
-
-      /* body hyperlinks -- cosmic indigo with an animated underline */
-      td a:not(.brand),
-      .exp-text a,
-      .name-links a {
-        color: var(--yl-accent);
-        font-weight: 600;
-        text-decoration: none;
-        background-image: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
-        background-size: 0% 1.5px;
-        background-repeat: no-repeat;
-        background-position: 0 100%;
-        transition: background-size .18s ease, color .18s ease;
-      }
-      td a:not(.brand):hover,
-      .exp-text a:hover,
-      .name-links a:hover {
-        color: var(--yl-accent2);
-        background-size: 100% 1.5px;
-      }
-      /* paper-title links shouldn't get the underline twice */
-      a:has(.papertitle) { background-image: none !important; }
-      a:has(.papertitle):hover { color: inherit !important; }
-
-      /* contact / social row -- light glass chips */
-      .name-links {
-        display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-        gap: 10px 12px; margin-top: 14px;
-      }
-      .name-links a {
-        display: inline-flex; align-items: center; gap: 7px;
-        padding: 6px 14px; border-radius: 999px;
-        background: rgba(255,255,255,0.7);
-        border: 1px solid rgba(0,33,71,0.28);
-        background-image: none;
-        color: var(--yl-ink); font-weight: 600;
-        transition: color .16s ease, background-color .16s ease, box-shadow .16s ease;
-      }
-      .name-links a:hover {
-        color: #fff; padding: 6px 14px;
-        background: var(--yl-accent);
-        background-image: none;
-        border-color: var(--yl-accent);
-        box-shadow: 0 6px 18px rgba(0,33,71,0.4);
-      }
-      .name-links svg { width: 16px; height: 16px; flex: none; }
-      .name-links .sep { display: none; }
-
-      /* experience cards -- light glass panel, cosmic left rail, glow on hover */
-      .exp-item {
-        background: rgba(255,255,255,0.62);
-        border: 1px solid var(--yl-line);
-        border-left: 3px solid var(--yl-edge);
-        border-radius: 12px;
-        padding: 12px 16px !important;
-        height: auto !important;
-        transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
-      }
-      .exp-item + .exp-item { margin-top: 14px !important; }
-      .exp-item:hover {
-        transform: translateX(3px);
-        background: rgba(255,255,255,0.9);
-        border-left-color: var(--yl-accent);
-        box-shadow: -8px 0 22px -10px rgba(0,33,71,0.5);
-      }
-      .exp-role {
-        font-family: var(--yl-mono) !important;
-        font-size: 13px !important; font-weight: 600 !important;
-        color: var(--yl-accent) !important;
-      }
-      .exp-name .papertitle {
-        font-size: 16px !important;
-      }
-
-      /* venue + year under each paper -> monospace tag, soft cosmic tint */
-      #pub-table em {
-        font-family: var(--yl-mono); font-style: normal;
-        font-size: 14px; font-weight: 600;
-        color: #3a5c8a;
-        letter-spacing: -0.2px;
-      }
-
-      /* award / highlight badges -- colorful pills */
-      .yl-badge {
-        display: inline-block;
-        font-family: var(--yl-mono);
-        font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
-        padding: 2px 9px; border-radius: 999px;
-        vertical-align: middle; white-space: nowrap;
-        line-height: 1.5;
-      }
-      .yl-badge.highlight {
-        color: #fff;
-        background: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
-        box-shadow: 0 2px 10px rgba(0,33,71,0.35);
-      }
-      .yl-badge.award {
-        color: #7a4a00;
-        background: linear-gradient(90deg, #ffd93d, #ffb020);
-        box-shadow: 0 2px 10px rgba(255,176,32,0.4);
-        text-decoration: none;
-      }
-      a.yl-badge.award { background-image: linear-gradient(90deg, #ffd93d, #ffb020) !important; color: #7a4a00 !important; }
-      a.yl-badge.award:hover { filter: brightness(1.05); color: #7a4a00 !important; }
-      .exp-item { grid-template-columns: 120px 1fr !important; align-items: center !important; }
-      .exp-item .exp-text { height: auto !important; overflow: visible !important; }
-      .exp-item .exp-name,
-      .exp-item .exp-role,
-      .exp-item .exp-desc {
-        white-space: normal !important;
-        overflow: visible !important;
-        text-overflow: clip !important;
-        line-height: 1.35 !important;
-      }
-      .exp-item .exp-desc { margin-top: 2px; }
-      .logo-thu { width: 64px !important; height: 64px !important; }
-
-      /* the template pulls .exp-list up by 20px, which now collides with the
-         Experiences header and the Industrial subheading -- neutralize it. */
-      .exp-list { top: 0 !important; margin-top: 6px !important; }
-      .exp-subhead:first-child { margin-top: 4px; }
-
-      /* Industrial / Academic subheadings within Experiences */
-      .exp-subhead {
-        max-width: 1100px;
-        margin: 10px auto 12px auto;
-        padding: 0 4px;
-        font-family: var(--yl-mono);
-        font-size: 12px; font-weight: 600; letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--yl-accent);
-        display: flex; align-items: center; gap: 12px;
-      }
-      .exp-subhead::before { content: "// "; color: var(--yl-accent2); }
-      .exp-subhead::after {
-        content: ""; flex: 1; height: 1px;
-        background: linear-gradient(90deg, var(--yl-edge), transparent);
-      }
-
-      /* scroll progress bar -- neon accent */
-      #yl-progress {
-        position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 950;
-        background: linear-gradient(90deg, var(--yl-accent), var(--yl-accent2));
-        box-shadow: 0 0 10px rgba(94,234,212,0.6);
-      }
-
-      /* author names + emphasis stay dark ink on the light panel */
-      #pub-table strong, .exp-text strong, td strong { color: var(--yl-ink); }
-      /* the inline red "Highlight"/"Best Paper" markers -> warm flare */
-      font[color="red"], span[style*="color:red"], span[style*="color: red"] { color: var(--yl-hot) !important; }
-
-      @media (max-width: 720px) {
-        /* keep the page from overflowing sideways */
-        html, body { overflow-x: hidden; max-width: 100%; }
-        img { max-width: 100%; height: auto; }
-
-        /* nav: allow the pills to scroll horizontally instead of overflowing */
-        #yl-nav {
-          left: 0; right: 0; transform: none;
-          width: auto; max-width: none; border-radius: 0;
-          justify-content: flex-start; flex-wrap: nowrap;
-          overflow-x: auto; -webkit-overflow-scrolling: touch;
-          gap: 0; padding: 8px 10px;
-        }
-        #yl-nav .brand { flex: none; }
-        #yl-nav a { flex: none; white-space: nowrap; }
-
-        /* content panel spans the screen */
-        body > table:first-of-type {
-          margin-top: 60px !important;
-          margin-bottom: 20px !important;
-          border-radius: 14px;
-          width: 94% !important; max-width: 94% !important;
-        }
-
-        /* smaller hero name */
-        .name { font-size: 30px !important; letter-spacing: -1px !important; }
-        .name::after { font-size: 26px; margin-left: 10px; }
-        h2[style*="Impact"], .exp-title { font-size: 20px !important; }
-
-        /* stack the intro: text first, photo below, both full width */
-        body > table:first-of-type > tbody > tr > td > table:first-of-type tr { display: block; }
-        body > table:first-of-type > tbody > tr > td > table:first-of-type td {
-          display: block; width: 100% !important; max-width: 100% !important;
-          padding: 0 4% !important; box-sizing: border-box;
-        }
-        td[style*="width:40%"] { text-align: center; margin: 14px 0 6px; }
-        td[style*="width:40%"] img { max-width: 62% !important; }
-
-        /* publications + experience thumbnails: stack image above text */
-        #pub-table > tbody > tr > td { display: block; width: 100% !important; box-sizing: border-box; }
-        #pub-table > tbody > tr > td:first-child {
-          border-left: 3px solid var(--yl-edge);
-          border-bottom: none;
-          border-radius: 12px 12px 0 0;
-          text-align: center; padding-top: 14px !important; padding-bottom: 4px !important;
-        }
-        #pub-table > tbody > tr > td:last-child {
-          border-top: none; border-left: 3px solid var(--yl-edge);
-          border-radius: 0 0 12px 12px;
-        }
-        #pub-table td[style*="width:25%"] img { max-width: 220px !important; width: 70% !important; }
-
-        /* experience cards: logo above text */
-        .exp-item { grid-template-columns: 1fr !important; justify-items: start; }
-        .exp-list { padding: 0 4%; box-sizing: border-box; }
-        .exp-subhead { padding: 0 4%; }
-
-        /* news date sits on its own line so entries don't get clipped */
-        .news-date { width: auto !important; margin-right: 8px; }
-
-        /* the template sets very tight line-heights (0.6em/0.8em) that make
-           wrapped lines overlap on narrow screens -- relax them on mobile. */
-        p[style*="line-height:0.6em"],
-        p[style*="line-height: 0.6em"],
-        p[style*="line-height:0.8em"],
-        p[style*="line-height: 0.8em"] {
-          line-height: 1.5 !important;
-          margin: 6px 0 !important;
-        }
-
-        /* let the wide section tables breathe */
-        td { word-break: break-word; }
-      }
-
-      @media (max-width: 380px) {
-        .name { font-size: 28px !important; }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        body::before, body::after, #yl-bg, .name,
-        body > table:first-of-type::before,
-        .name::after { animation: none !important; }
-      }
+      body { color: #1a1a1a; background: #ffffff; }
+      a { color: #1772d0; text-decoration: none; }
+      a:hover { color: #f09228; }
+      .name { font-weight: 700; margin: 0 0 6px 0; }
+      h2 { font-weight: 700; }
+      hr { border: none; border-top: 1px solid #ddd; margin: 6px 0 10px 0; }
+      .papertitle { font-weight: 700; }
+      img.hoverZoomLink { transition: opacity .2s ease-in-out; }
     </style>
     
   </head>
 
   <body>
-    <div id="yl-bg"></div>
-    <div id="yl-progress"></div>
-    <nav id="yl-nav">
-      <span class="brand">Yuanze Lin</span>
-      <a href="#about">About</a>
-      <a href="#news">News</a>
-      <a href="#publications">Publications</a>
-      <a href="#experience">Experience</a>
-      <a href="#services">Services</a>
-    </nav>
-    <a id="about"></a>
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
@@ -525,23 +63,11 @@
 		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; The applicability of large language models (LLMs) </p>
 <!-- 		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Self-supervised representation learning </p> -->
                 </p>
-                <p class="name-links">
-                  <a href="mailto:yuanze.lin@cs.ox.ac.uk" title="Email">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
-                    yuanze.lin [at] cs.ox.ac.uk
-                  </a>
-                  <a href="https://scholar.google.com/citations?user=0WFC2w0AAAAJ&hl=en" title="Google Scholar">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 8.5l11 6.5 9-5.32V17h2V8.5L12 2z"></path><path d="M6 12.9v3.6c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.6l-6 3.55-6-3.55z" fill="currentColor"></path></svg>
-                    Google Scholar
-                  </a>
-                  <a href="https://github.com/yuanze-lin/" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"></path></svg>
-                    GitHub
-                  </a>
-                  <a href="https://www.linkedin.com/in/yuanze-lin-720543139/" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
-                    LinkedIn
-                  </a>
+                <p style="text-align:center">
+                  <a href="mailto:yuanze.lin@cs.ox.ac.uk">yuanze.lin [at] cs.ox.ac.uk</a> &nbsp;/&nbsp;
+                  <a href="https://scholar.google.com/citations?user=0WFC2w0AAAAJ&hl=en">Google Scholar</a> &nbsp;/&nbsp;
+                  <a href="https://github.com/yuanze-lin/">GitHub</a> &nbsp;/&nbsp;
+                  <a href="https://www.linkedin.com/in/yuanze-lin-720543139/">LinkedIn</a>
                 </p>
 <!-- 	        <p style="color:red">  <b> I'm actively seeking research intern positions, feel free to contact me </b> 😊 </p> -->
               </td>
@@ -573,7 +99,7 @@
         <p style="line-height:0.8em;"> <span class="news-date">[09/2022]</span> <a href="https://papers.nips.cc/paper_files/paper/2022/file/44956951349095f74492a5471128a7e0-Paper-Conference.pdf"> REVIVE</a> accepted to NeurIPS 2022. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[03/2022]</span> <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Jiang_Pseudo-Q_Generating_Pseudo_Language_Queries_for_Visual_Grounding_CVPR_2022_paper.pdf"> Pseudo-Q</a> and <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_AdaFocus_V2_End-to-End_Training_of_Spatial_Dynamic_Networks_for_Video_CVPR_2022_paper.pdf"> AdaFocus V2</a> accepted to CVPR 2022. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[07/2021]</span> <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Lin_Self-Supervised_Video_Representation_Learning_With_Meta-Contrastive_Network_ICCV_2021_paper.pdf"> MCN</a> accepted to ICCV 2021. </p>
-        <p style="line-height:0.8em;"> <span class="news-date">[06/2021]</span> <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf"> EVA-GCN</a> accepted to CVPR 2021 AMFG Workshop and won <span class="yl-badge award">🏆 Best Paper Award</span> </p>
+        <p style="line-height:0.8em;"> <span class="news-date">[06/2021]</span> <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf"> EVA-GCN</a> accepted to CVPR 2021 AMFG Workshop and won <font color="red"><strong>(Best Paper Award)</strong></font> </p>
         </td>
         <tr>
         </tbody></table>
@@ -639,7 +165,7 @@
           <a href="https://www.ron-clark.com/">Ronald Clark</a>,
           <a href="https://eng.ox.ac.uk/people/philip-torr/">Philip Torr</a>
           <br>
-          <em>CVPR</em>, 2025&nbsp; <span class="yl-badge highlight">★ Highlight</span>
+          <em>CVPR</em>, 2025&nbsp; <span style="color: red;"><strong>(Highlight)</strong></span>
           <br>
           <a href="https://arxiv.org/pdf/2412.09612">ArXiv</a>
 	  /
@@ -906,7 +432,7 @@
           <a href="https://scholar.google.com/citations?hl=zh-CN&user=6aYncPAAAAAJ">Shentong Mo</a>,
           <strong>Yuanze Lin</strong>
           <br>
-          <em>CVPR AMFG Workshop</em>, 2021 &nbsp <a href="images/workshop_best_paper.jpg" class="yl-badge award">🏆 Best Paper Award</a> 
+          <em>CVPR AMFG Workshop</em>, 2021 &nbsp <a href="images/workshop_best_paper.jpg"><font color="red"><strong>(Best Paper Award)</strong></font></a> 
           <br>
           <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf">Paper</a> /
           <a href="https://github.com/stoneMo/EVA-GCN">Code</a> /
@@ -1213,20 +739,6 @@
               </td>
             </tr>
           </tbody></table>
-
-    <script>
-      (function () {
-        var bar = document.getElementById('yl-progress');
-        function onScroll() {
-          var h = document.documentElement;
-          var scrolled = h.scrollTop || document.body.scrollTop;
-          var height = (h.scrollHeight - h.clientHeight) || 1;
-          bar.style.width = (scrolled / height * 100) + '%';
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
-      })();
-    </script>
 
   </body>
 </html>
