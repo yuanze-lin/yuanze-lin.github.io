@@ -178,6 +178,9 @@
       /* compact vertical rhythm -- tighter section padding & card gaps */
       body > table:first-of-type td[style*="padding:20px"] { padding: 12px 20px !important; }
       #pub-table { border-collapse: separate !important; border-spacing: 0 10px !important; }
+      /* close the big blank between the "sorted by recency" note and the first paper */
+      td:has(> #publications) > p { margin: 2px 0 0 0 !important; padding: 0 !important; }
+      #pub-table { margin-top: -14px !important; }
       #pub-table > tbody > tr > td {
         background: rgba(255,255,255,0.62);
         border-top: 1px solid var(--yl-line);
