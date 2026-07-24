@@ -277,7 +277,10 @@
       .exp-item .exp-text { height: auto !important; }
       .exp-item .exp-logo img { max-height: 54px !important; width: auto !important; }
       /* Alibaba wordmark is short/wide -- let it render larger without growing the box */
-      .exp-item .exp-logo img.logo-ali { max-height: none !important; width: 110px !important; height: auto !important; }
+      .exp-item .exp-logo img.logo-ali { max-height: none !important; width: 88px !important; height: auto !important; }
+      /* MSRA "Microsoft Research" wordmark (Asia) -- render a touch smaller.
+         target by src so the Redmond entry (same logo-msra class) is unaffected. */
+      .exp-item .exp-logo img[src*="Microsoft_Research_Asia"] { max-height: 44px !important; width: auto !important; height: auto !important; }
       .exp-item + .exp-item { margin-top: 10px !important; }
       .exp-item:hover {
         transform: translateX(3px);
