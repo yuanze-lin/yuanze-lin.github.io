@@ -270,8 +270,12 @@
         transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
       }
       /* the base template forces 104px tall logo/text cells -- collapse them
-         now that descriptions are 1 line, so each card hugs its content */
-      .exp-item .exp-logo, .exp-item .exp-text { height: auto !important; }
+         now that descriptions are 1 line, so each card hugs its content.
+         cap logo height so tall logos don't prop the box taller than the text
+         (match the shortest card, e.g. Microsoft Redmond). */
+      .exp-item .exp-logo { height: 54px !important; }
+      .exp-item .exp-text { height: auto !important; }
+      .exp-item .exp-logo img { max-height: 54px !important; width: auto !important; }
       .exp-item + .exp-item { margin-top: 10px !important; }
       .exp-item:hover {
         transform: translateX(3px);
