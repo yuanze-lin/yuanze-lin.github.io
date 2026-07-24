@@ -265,11 +265,14 @@
         border: 1px solid var(--yl-line);
         border-left: 3px solid var(--yl-edge);
         border-radius: 12px;
-        padding: 12px 16px !important;
+        padding: 8px 16px !important;
         height: auto !important;
         transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
       }
-      .exp-item + .exp-item { margin-top: 14px !important; }
+      /* the base template forces 104px tall logo/text cells -- collapse them
+         now that descriptions are 1 line, so each card hugs its content */
+      .exp-item .exp-logo, .exp-item .exp-text { height: auto !important; }
+      .exp-item + .exp-item { margin-top: 10px !important; }
       .exp-item:hover {
         transform: translateX(3px);
         background: rgba(255,255,255,0.9);
