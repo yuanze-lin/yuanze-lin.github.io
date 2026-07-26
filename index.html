@@ -1562,6 +1562,17 @@
         var index = 0;
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        /* Reshuffle on every visit so the album opens on a different photo.
+           Fisher-Yates, then re-append in the new order -- appendChild moves
+           an existing node, so this reorders the DOM rather than cloning.
+           Runs before the dots are built, so index 0 is the new first slide. */
+        for (var k = slides.length - 1; k > 0; k--) {
+          var r = Math.floor(Math.random() * (k + 1));
+          var tmp = slides[k]; slides[k] = slides[r]; slides[r] = tmp;
+        }
+        slides.forEach(function (slide) { track.appendChild(slide); });
+        track.scrollLeft = 0;
+
         var dots = slides.map(function (slide, i) {
           var dot = document.createElement('button');
           dot.type = 'button';
