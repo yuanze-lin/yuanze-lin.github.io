@@ -24,7 +24,10 @@
     <!-- ===== Professional polish layer (additive; original layout preserved) ===== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Ma Shan Zheng is only used for the three characters in the name, so ask
+         Google for just those glyphs (2 KB) instead of the whole CJK family. -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&text=%E6%9E%97%E8%BF%9C%E6%B3%BD&display=swap" rel="stylesheet">
     <style>
       :root {
         --yl-ink: #33404f;      /* soft slate for body text */
@@ -567,6 +570,31 @@
       p[style*="line-height:0.8em"] { line-height: 1.45 !important; margin: 3px 0 !important; }
       p[style*="line-height:0.6em"] { line-height: 1.45 !important; margin: 3px 0 !important; }
 
+      /* ===== News: rolling box, latest 12 in view ===== */
+      .yl-news-roll {
+        max-height: 340px;   /* fallback only -- JS sets the exact 12-entry height */
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding-right: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(122,112,96,0.3) transparent;
+        /* fade the bottom edge so it reads as "there is more below" */
+        -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 26px), transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 calc(100% - 26px), transparent 100%);
+      }
+      .yl-news-roll.is-end {
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+      .yl-news-roll::-webkit-scrollbar { width: 6px; }
+      .yl-news-roll::-webkit-scrollbar-track { background: transparent; }
+      .yl-news-roll::-webkit-scrollbar-thumb {
+        background: rgba(122,112,96,0.26);
+        border-radius: 999px;
+      }
+      .yl-news-roll::-webkit-scrollbar-thumb:hover { background: rgba(122,112,96,0.45); }
+      .yl-news-roll:focus-visible { outline: 2px solid var(--yl-accent); outline-offset: 4px; }
+
       /* ===== Photo album: one at a time, swipeable ===== */
       .yl-album { margin: 4px 0 2px; }
 
@@ -601,6 +629,14 @@
         margin: 0;
         scroll-snap-align: center;
         scroll-snap-stop: always;
+      }
+
+      /* <picture> is inline by default, which would collapse the 100%/100%
+         sizing below -- make it fill the slide */
+      .yl-album-slide picture {
+        display: block;
+        width: 100%;
+        height: 100%;
       }
 
       /* reset the site-wide image chrome inside the album */
@@ -724,13 +760,13 @@
                   Dr. <a href="https://www.microsoft.com/en-us/research/people/yanlu/"> Yan Lu</a> at MSRA, Prof. <a href="http://www.gaohuang.net/"> Gao Huang</a> at Tsinghua University, Dr. <a href="https://sites.google.com/view/yujia"> Yujia Xie</a>, Dr. <a href="https://www.dongdongchen.bid/"> Dongdong Chen</a> and Dr. <a href="https://xycking.wixsite.com/yichongxu"> Yichong Xu</a> at Microsoft Redmond, Prof. <a href="https://cihangxie.github.io/"> Cihang Xie</a> and Prof. <a href="https://www.cs.jhu.edu/~ayuille/"> Alan Yuille</a> at Johns Hopkins University,
 		  Dr. <a href="https://sites.google.com/site/yihsuantsai/"> Yi-Hsuan Tsai</a> and Prof. <a href="https://faculty.ucmerced.edu/mhyang/"> Ming-Hsuan Yang</a> at UC Merced. -->
 			
-                  Before going to Oxford, I had a great time at <a href="https://www.microsoft.com/en-us/research/project/project-florence-vl/publications/">Microsoft Redmond</a>, <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">MSR Asia</a>, <a href="https://ccvl.jhu.edu/">CCVL @ Johns Hopkins University</a>, <a href="https://www.alibabagroup.com/en-US/"> Alibaba</a>, etc. I appreciate collaborating with distinguished professors and researchers from these institutions.
+                  I have also worked at <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-cambridge/">Microsoft Research</a>, <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-asia/">MSR Asia</a>, <a href="https://www.alibabagroup.com/en-US/">Alibaba</a>, and <a href="https://ccvl.jhu.edu/">CCVL @ Johns Hopkins University</a>. I appreciate collaborating with distinguished professors and researchers from these institutions.
                 </p>
                 <p>
-                  My research interests span machine learning, especially:
-		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Multimodal large language models (MLLMs) </p>
-		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Diffusion-based image/video generation and editing </p>
-		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Applications of large language models (LLMs) </p>
+                  My research builds generative and multimodal foundation models that perceive, reason about, and generate the physical 3D world:
+		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Generative models of the physical world &mdash; geometry, illumination, avatars, and video </p>
+		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Spatial, embodied, and 3D world models with physical grounding and spatial reasoning </p>
+		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Efficient multimodal foundation models for vision&ndash;language reasoning and task routing </p>
 <!-- 		   <p style="line-height:0.6em;"> &nbsp;&#x2022;&nbsp;&nbsp; Self-supervised representation learning </p> -->
                 </p>
                 <p class="name-links">
@@ -754,7 +790,7 @@
 <!-- 	        <p style="color:red">  <b> I'm actively seeking research intern positions, feel free to contact me </b> 😊 </p> -->
               </td>
               <td style="padding:2.5%;width:40%;max-width:40%;">
-                <a href="images/Yuanze.jpg"><img style="width:100%;max-width:100%;" alt="profile photo" src="images/Yuanze.jpg" class="hoverZoomLink"></a>
+                <a href="images/Yuanze.jpg"><picture><source srcset="images/Yuanze.webp" type="image/webp"><img style="width:100%;max-width:100%;height:auto;" alt="profile photo" src="images/Yuanze.jpg" class="hoverZoomLink" width="640" height="640" decoding="async"></picture></a>
               </td>
             </tr>
           </tbody></table>
@@ -764,6 +800,7 @@
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2 id="news" style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/news.png", style="width:32px;height:auto" /> &nbsp; News</h2>
 		<hr />
+		<div class="yl-news-roll" id="yl-news-roll" tabindex="0" role="region" aria-label="News, scrollable">
 		<p style="line-height:0.8em;"> <span class="news-date">[07/2026]</span> Started a research internship at <a href="https://www.microsoft.com/en-us/research/lab/microsoft-research-cambridge/"> Microsoft Research Cambridge</a>. </font></p>
 		<p style="line-height:0.8em;"> <span class="news-date">[09/2025]</span> <a href="https://arxiv.org/pdf/2506.03150"> IllumiCraft</a> accepted to NeurIPS 2025.</span></font></p>
 		<p style="line-height:0.8em;"> <span class="news-date">[06/2025]</span> We introduced <a href="https://arxiv.org/pdf/2506.03150"> IllumiCraft</a> for high-fidelity video relighting.</font></p>
@@ -782,6 +819,7 @@
         <p style="line-height:0.8em;"> <span class="news-date">[03/2022]</span> <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Jiang_Pseudo-Q_Generating_Pseudo_Language_Queries_for_Visual_Grounding_CVPR_2022_paper.pdf"> Pseudo-Q</a> and <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_AdaFocus_V2_End-to-End_Training_of_Spatial_Dynamic_Networks_for_Video_CVPR_2022_paper.pdf"> AdaFocus V2</a> accepted to CVPR 2022. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[07/2021]</span> <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Lin_Self-Supervised_Video_Representation_Learning_With_Meta-Contrastive_Network_ICCV_2021_paper.pdf"> MCN</a> accepted to ICCV 2021. </p>
         <p style="line-height:0.8em;"> <span class="news-date">[06/2021]</span> <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf"> EVA-GCN</a> accepted to CVPR 2021 AMFG Workshop and won <span class="yl-badge award">🏆 Best Paper Award</span> </p>
+		</div>
         </td>
         <tr>
         </tbody></table>
@@ -800,7 +838,7 @@
         <table id="pub-table" style="width:100%;margin-top:0;margin-right:auto;margin-left:auto;"><tbody>
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-	    <img src='images/IllumiCraft.png' width="160" height="130">
+	    <picture><source srcset="images/IllumiCraft.webp" type="image/webp"><img src="images/IllumiCraft.jpg" width="160" height="130" alt="IllumiCraft teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://arxiv.org/pdf/2506.03150.pdf">
@@ -833,7 +871,7 @@
 		
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-	    <img src='images/Olympus.png' width="160" height="130">
+	    <picture><source srcset="images/Olympus.webp" type="image/webp"><img src="images/Olympus.jpg" width="160" height="130" alt="Olympus teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://arxiv.org/pdf/2412.09612.pdf">
@@ -927,7 +965,7 @@
 		
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/learnable_regions.png' width="160" height="130">
+            <picture><source srcset="images/learnable_regions.webp" type="image/webp"><img src="images/learnable_regions.jpg" width="160" height="130" alt="Learnable Regions teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Lin_Text-Driven_Image_Editing_via_Learnable_Regions_CVPR_2024_paper.pdf">
@@ -962,7 +1000,7 @@
 		
         <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/smaug.png' width="160" height="130">
+            <picture><source srcset="images/smaug.webp" type="image/webp"><img src="images/smaug.jpg" width="160" height="130" alt="SMAUG teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/ICCV2023/papers/Lin_SMAUG_Sparse_Masked_Autoencoder_for_Efficient_Video-Language_Pre-Training_ICCV_2023_paper.pdf">
@@ -994,7 +1032,7 @@
       
       <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/revive.png' width="160" height="130">
+            <picture><source srcset="images/revive.webp" type="image/webp"><img src="images/revive.jpg" width="160" height="130" alt="REVIVE teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://proceedings.neurips.cc/paper_files/paper/2022/file/44956951349095f74492a5471128a7e0-Paper-Conference.pdf">
@@ -1019,7 +1057,7 @@
 
       <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/pseudoq.png' width="160" height="130">
+            <picture><source srcset="images/pseudoq.webp" type="image/webp"><img src="images/pseudoq.jpg" width="160" height="130" alt="Pseudo-Q teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Jiang_Pseudo-Q_Generating_Pseudo_Language_Queries_for_Visual_Grounding_CVPR_2022_paper.pdf">
@@ -1047,7 +1085,7 @@
 
       <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/adafocus2.png' width="160" height="130">
+            <picture><source srcset="images/adafocus2.webp" type="image/webp"><img src="images/adafocus2.jpg" width="160" height="130" alt="AdaFocus V2 teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Wang_AdaFocus_V2_End-to-End_Training_of_Spatial_Dynamic_Networks_for_Video_CVPR_2022_paper.pdf">
@@ -1078,7 +1116,7 @@
 
       <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/mcn.png' width="160" height="130">
+            <picture><source srcset="images/mcn.webp" type="image/webp"><img src="images/mcn.jpg" width="160" height="130" alt="MCN teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Lin_Self-Supervised_Video_Representation_Learning_With_Meta-Contrastive_Network_ICCV_2021_paper.pdf">
@@ -1103,7 +1141,7 @@
             
       <tr>
         <td style="padding:20px;width:25%;vertical-align:middle">
-            <img src='images/eva_gcn.png' width="160" height="130">
+            <picture><source srcset="images/eva_gcn.webp" type="image/webp"><img src="images/eva_gcn.jpg" width="160" height="130" alt="EVA-GCN teaser figure" loading="lazy" decoding="async"></picture>
         </td>
         <td style="padding:20px;width:75%;vertical-align:middle">
           <a href="https://openaccess.thecvf.com/content/CVPR2021W/AMFG/papers/Xin_EVA-GCN_Head_Pose_Estimation_Based_on_Graph_Convolutional_Networks_CVPRW_2021_paper.pdf">
@@ -1272,8 +1310,6 @@
 
 <div class="exp-list">
 
-  <div class="exp-subhead">Industrial</div>
-
   <div class="exp-item">
     <div class="exp-logo">
       <img class="logo-ms" src="icons/Microsoft.png" alt="Microsoft Research">
@@ -1354,6 +1390,8 @@
   </div>
   -->
 
+  <!-- Academic experiences (hidden; keep for later)
+
   <div class="exp-subhead">Academic</div>
 
   <div class="exp-item">
@@ -1395,6 +1433,8 @@
     </div>
   </div>
 
+  -->
+
 </div>
 
 </div>
@@ -1426,16 +1466,16 @@
                   <div class="yl-album-stage">
                     <button class="yl-album-nav prev" type="button" aria-label="Previous photo">&#8249;</button>
                     <div class="yl-album-track" id="yl-album-track">
-                      <figure class="yl-album-slide"><img src="photos/photo-01.jpg" alt="A wood pigeon standing on a garden lawn" fetchpriority="high" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-02.jpg" alt="The Bridge of Sighs arching over a lane in Oxford" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-03.jpg" alt="The Radcliffe Camera in Oxford under a bright blue sky" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-04.jpg" alt="A brick cathedral with a tall campanile lit at dusk" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-05.jpg" alt="A display cabinet filled with rows of vintage cameras" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-06.jpg" alt="White chalk cliffs above a pebble beach" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-07.jpg" alt="A gothic abbey seen across a sunlit green" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-08.jpg" alt="A hydrangea bush in full bloom" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-09.jpg" alt="A stone church with a crenellated tower and a red door" loading="lazy" decoding="async"></figure>
-                      <figure class="yl-album-slide"><img src="photos/photo-10.jpg" alt="A round Norman church with a conical roof" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-01-sm.webp 780w, photos/photo-01.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-01.jpg" alt="A wood pigeon standing on a garden lawn" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-02-sm.webp 780w, photos/photo-02.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-02.jpg" alt="The Bridge of Sighs arching over a lane in Oxford" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-03-sm.webp 780w, photos/photo-03.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-03.jpg" alt="The Radcliffe Camera in Oxford under a bright blue sky" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-04-sm.webp 780w, photos/photo-04.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-04.jpg" alt="A brick cathedral with a tall campanile lit at dusk" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-05-sm.webp 585w, photos/photo-05.webp 1080w" sizes="(max-width: 720px) 70vw, 430px"><img src="photos/photo-05.jpg" alt="A display cabinet filled with rows of vintage cameras" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-06-sm.webp 780w, photos/photo-06.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-06.jpg" alt="White chalk cliffs above a pebble beach" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-07-sm.webp 780w, photos/photo-07.webp 1440w" sizes="(max-width: 720px) 92vw, 760px"><img src="photos/photo-07.jpg" alt="A gothic abbey seen across a sunlit green" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-08-sm.webp 585w, photos/photo-08.webp 1080w" sizes="(max-width: 720px) 70vw, 430px"><img src="photos/photo-08.jpg" alt="A hydrangea bush in full bloom" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-09-sm.webp 585w, photos/photo-09.webp 1080w" sizes="(max-width: 720px) 70vw, 430px"><img src="photos/photo-09.jpg" alt="A stone church with a crenellated tower and a red door" loading="lazy" decoding="async"></picture></figure>
+                      <figure class="yl-album-slide"><picture><source type="image/webp" srcset="photos/photo-10-sm.webp 585w, photos/photo-10.webp 1080w" sizes="(max-width: 720px) 70vw, 430px"><img src="photos/photo-10.jpg" alt="A round Norman church with a conical roof" loading="lazy" decoding="async"></picture></figure>
                     </div>
                     <button class="yl-album-nav next" type="button" aria-label="Next photo">&#8250;</button>
                   </div>
@@ -1470,6 +1510,39 @@
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+      })();
+    </script>
+
+    <script>
+      /* News roll: size the box to exactly the first 12 entries, so the rest
+         stay reachable by scrolling rather than being cut from the page. */
+      (function () {
+        var box = document.getElementById('yl-news-roll');
+        if (!box) return;
+        var items = box.getElementsByTagName('p');
+        var SHOW = 12;
+
+        function mark() {
+          box.classList.toggle('is-end',
+            box.scrollTop + box.clientHeight >= box.scrollHeight - 2);
+        }
+        function size() {
+          if (items.length > SHOW) {
+            box.style.maxHeight = (items[SHOW].offsetTop - items[0].offsetTop) + 'px';
+          } else {
+            box.style.maxHeight = 'none';
+          }
+          mark();
+        }
+
+        box.addEventListener('scroll', mark, { passive: true });
+        var t;
+        window.addEventListener('resize', function () {
+          clearTimeout(t); t = setTimeout(size, 150);
+        });
+        size();
+        /* webfonts change the line box, so measure again once they land */
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
       })();
     </script>
 
