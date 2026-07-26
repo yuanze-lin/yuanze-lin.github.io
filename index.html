@@ -486,8 +486,15 @@
       /* warm paper ground instead of stark white */
       body { background: var(--yl-paper); }
 
-      /* name: same gradient idea, lower saturation */
-      .name { background: linear-gradient(100deg, #40668a 0%, #6f9ab5 100%); }
+      /* name: same gradient idea, lower saturation.
+         must be background-image, not the `background` shorthand -- the
+         shorthand resets background-clip:text from the base rule, which
+         leaves the text transparent and paints the gradient as a solid bar. */
+      .name {
+        background-image: linear-gradient(100deg, #40668a 0%, #6f9ab5 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
       .name::after { -webkit-text-fill-color: #4a4640; color: #4a4640; }
 
       /* surfaces: flatter, warmer, no lift on hover */
