@@ -464,7 +464,229 @@
         .name::after { animation: none !important; }
       }
     </style>
-    
+
+    <!-- ===== Calm layer: warmer palette, softer surfaces, roomier rhythm ===== -->
+    <style>
+      :root {
+        --yl-ink: #3d4550;        /* warm slate for body text */
+        --yl-muted: #9b9689;      /* warm grey */
+        --yl-accent: #4a7a9b;     /* dusty blue for links */
+        --yl-deep: #40668a;
+        --yl-accent2: #7fa8bf;    /* soft sky */
+        --yl-hot: #c08472;        /* clay, replaces coral */
+        --yl-rose: #b3879a;       /* muted rose for date tags */
+        --yl-accent-soft: rgba(74,122,155,0.07);
+        --yl-panel: rgba(255,255,255,0.55);
+        --yl-line: rgba(122,112,96,0.16);
+        --yl-edge: rgba(74,122,155,0.20);
+        --yl-paper: #fbfaf8;
+        --yl-paper-deep: #f4f1ec;
+      }
+
+      /* warm paper ground instead of stark white */
+      body { background: var(--yl-paper); }
+
+      /* name: same gradient idea, lower saturation */
+      .name { background: linear-gradient(100deg, #40668a 0%, #6f9ab5 100%); }
+      .name::after { -webkit-text-fill-color: #4a4640; color: #4a4640; }
+
+      /* surfaces: flatter, warmer, no lift on hover */
+      img.hoverZoomLink, td[style*="width:40%"] img {
+        border: 1px solid var(--yl-line) !important;
+        box-shadow: 0 6px 20px rgba(122,112,96,0.10) !important;
+      }
+      img.hoverZoomLink:hover {
+        transform: none;
+        box-shadow: 0 8px 24px rgba(122,112,96,0.16) !important;
+      }
+
+      #pub-table > tbody > tr > td { background: var(--yl-panel); }
+      #pub-table > tbody > tr:hover > td {
+        background: rgba(255,255,255,0.85);
+        border-color: var(--yl-line);
+      }
+      #pub-table > tbody > tr:hover > td:first-child {
+        border-left-color: var(--yl-accent);
+        box-shadow: none;
+      }
+
+      td[style*="width:25%"] img {
+        border: 1px solid var(--yl-line);
+        box-shadow: 0 3px 10px rgba(122,112,96,0.08);
+      }
+      td[style*="width:25%"] img:hover {
+        transform: none;
+        box-shadow: 0 5px 16px rgba(122,112,96,0.14);
+      }
+
+      .name-links a { border: 1px solid var(--yl-line); }
+      .name-links a:hover {
+        background: var(--yl-accent);
+        border-color: var(--yl-accent);
+        box-shadow: none;
+      }
+
+      .exp-item { background: var(--yl-panel); }
+      .exp-item:hover {
+        transform: none;
+        background: rgba(255,255,255,0.85);
+        border-left-color: var(--yl-accent);
+        box-shadow: none;
+      }
+
+      /* badges: flat and quiet, no neon */
+      .yl-badge.highlight {
+        background: rgba(74,122,155,0.12);
+        color: #3c6480;
+        box-shadow: none;
+      }
+      .yl-badge.award,
+      a.yl-badge.award {
+        background: rgba(198,150,60,0.14) !important;
+        color: #8a6620 !important;
+        box-shadow: none;
+      }
+
+      /* scroll bar: thin and muted, glow removed */
+      #yl-progress { background: var(--yl-accent); opacity: 0.5; box-shadow: none; }
+
+      /* subheads lose the "//" code marker */
+      .exp-subhead::before { content: ""; }
+
+      /* roomier vertical rhythm */
+      body > table:first-of-type td[style*="padding:20px"] { padding: 20px !important; }
+      #pub-table { border-spacing: 0 16px !important; }
+      .exp-item + .exp-item { margin-top: 16px !important; }
+      p[style*="line-height:0.8em"] { line-height: 1.45 !important; margin: 3px 0 !important; }
+      p[style*="line-height:0.6em"] { line-height: 1.45 !important; margin: 3px 0 !important; }
+
+      /* ===== Photo album: one at a time, swipeable ===== */
+      .yl-album { margin: 4px 0 2px; }
+
+      /* swipe works with no JS; the controls only appear once wired up */
+      .yl-album:not(.is-ready) .yl-album-nav,
+      .yl-album:not(.is-ready) .yl-album-foot { display: none; }
+
+      .yl-album-stage {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--yl-paper-deep);
+        border: 1px solid var(--yl-line);
+      }
+
+      .yl-album-track {
+        display: flex;
+        aspect-ratio: 4 / 3;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .yl-album-track::-webkit-scrollbar { display: none; }
+
+      .yl-album-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        margin: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+
+      /* reset the site-wide image chrome inside the album */
+      .yl-album-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+
+      .yl-album-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        border-radius: 999px;
+        border: 1px solid var(--yl-line);
+        background: rgba(255,255,255,0.8);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        color: var(--yl-ink);
+        font-size: 19px;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity .25s ease, background .25s ease;
+      }
+      .yl-album-nav:hover { opacity: 1; background: #fff; }
+      .yl-album-nav:disabled { opacity: 0.22; cursor: default; }
+      .yl-album-nav.prev { left: 12px; }
+      .yl-album-nav.next { right: 12px; }
+
+      .yl-album:focus-visible,
+      .yl-album-stage:focus-visible { outline: 2px solid var(--yl-accent); outline-offset: 3px; }
+
+      .yl-album-foot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 12px;
+      }
+      .yl-album-dots { display: flex; align-items: center; gap: 7px; }
+      .yl-album-dot {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: none;
+        border-radius: 999px;
+        background: rgba(122,112,96,0.28);
+        cursor: pointer;
+        transition: background .25s ease, transform .25s ease;
+      }
+      .yl-album-dot:hover { background: rgba(122,112,96,0.5); }
+      .yl-album-dot.is-active { background: var(--yl-accent); transform: scale(1.35); }
+      .yl-album-count {
+        font-family: var(--yl-mono);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--yl-muted);
+        letter-spacing: -0.2px;
+      }
+      .yl-album-hint {
+        margin: 2px 0 10px !important;
+        font-size: 13px;
+        color: var(--yl-muted);
+      }
+
+      @media (max-width: 720px) {
+        /* on touch, swiping is the affordance -- drop the arrows */
+        .yl-album-nav { display: none; }
+        .yl-album-stage { border-radius: 12px; }
+        /* a square stage splits the difference between the landscape and
+           portrait shots, so neither is squeezed on a narrow screen */
+        .yl-album-track { aspect-ratio: 1 / 1; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .yl-album-track { scroll-behavior: auto; }
+        .yl-album-dot { transition: none; }
+      }
+    </style>
+
   </head>
 
   <body>
@@ -1186,6 +1408,39 @@
             </tr>
           </tbody></table>
 
+          <table style="width:100%;padding-top:20px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+              <tr>
+              <td style="padding:20px;width:100%;vertical-align:middle">
+                <h2 id="photos" style="font-family:Impact; font-size:24px; font-weight:bold"><img src="icons/photos.svg" style="width:32px;height:auto;vertical-align:middle" alt="" /> &nbsp; Photos</h2>
+		<hr />
+                <p class="yl-album-hint">A few things I walked past. Swipe, or use the arrows.</p>
+
+                <div class="yl-album" id="yl-album" role="group" aria-roledescription="carousel" aria-label="Photo album" tabindex="0">
+                  <div class="yl-album-stage">
+                    <button class="yl-album-nav prev" type="button" aria-label="Previous photo">&#8249;</button>
+                    <div class="yl-album-track" id="yl-album-track">
+                      <figure class="yl-album-slide"><img src="photos/photo-01.jpg" alt="A wood pigeon standing on a garden lawn" fetchpriority="high" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-02.jpg" alt="The Bridge of Sighs arching over a lane in Oxford" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-03.jpg" alt="The Radcliffe Camera in Oxford under a bright blue sky" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-04.jpg" alt="A brick cathedral with a tall campanile lit at dusk" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-05.jpg" alt="A display cabinet filled with rows of vintage cameras" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-06.jpg" alt="White chalk cliffs above a pebble beach" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-07.jpg" alt="A gothic abbey seen across a sunlit green" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-08.jpg" alt="A hydrangea bush in full bloom" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-09.jpg" alt="A stone church with a crenellated tower and a red door" loading="lazy" decoding="async"></figure>
+                      <figure class="yl-album-slide"><img src="photos/photo-10.jpg" alt="A round Norman church with a conical roof" loading="lazy" decoding="async"></figure>
+                    </div>
+                    <button class="yl-album-nav next" type="button" aria-label="Next photo">&#8250;</button>
+                  </div>
+                  <div class="yl-album-foot">
+                    <div class="yl-album-dots" role="group" aria-label="Choose a photo"></div>
+                    <span class="yl-album-count" aria-live="polite"></span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody></table>
+
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:20px">
@@ -1208,6 +1463,85 @@
         }
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
+      })();
+    </script>
+
+    <script>
+      /* Photo album. Swiping is native scroll-snap and works without this
+         script; everything below is the enhancement layer (arrows, dots,
+         counter, keyboard), so the controls stay hidden until it runs. */
+      (function () {
+        var album = document.getElementById('yl-album');
+        if (!album) return;
+
+        var track = album.querySelector('.yl-album-track');
+        var slides = [].slice.call(album.querySelectorAll('.yl-album-slide'));
+        var dotWrap = album.querySelector('.yl-album-dots');
+        var count = album.querySelector('.yl-album-count');
+        var prev = album.querySelector('.yl-album-nav.prev');
+        var next = album.querySelector('.yl-album-nav.next');
+        if (!track || !slides.length) return;
+
+        var index = 0;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var dots = slides.map(function (slide, i) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'yl-album-dot';
+          dot.setAttribute('aria-label', 'Photo ' + (i + 1) + ' of ' + slides.length);
+          dot.addEventListener('click', function () { go(i); });
+          dotWrap.appendChild(dot);
+          return dot;
+        });
+
+        function go(i) {
+          i = Math.max(0, Math.min(slides.length - 1, i));
+          track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+        }
+
+        function sync() {
+          dots.forEach(function (dot, i) {
+            var on = i === index;
+            dot.classList.toggle('is-active', on);
+            if (on) { dot.setAttribute('aria-current', 'true'); }
+            else { dot.removeAttribute('aria-current'); }
+          });
+          count.textContent = (index + 1) + ' / ' + slides.length;
+          prev.disabled = index === 0;
+          next.disabled = index === slides.length - 1;
+        }
+
+        var settle;
+        track.addEventListener('scroll', function () {
+          clearTimeout(settle);
+          settle = setTimeout(function () {
+            var i = Math.round(track.scrollLeft / track.clientWidth);
+            if (i !== index) { index = i; sync(); }
+          }, 60);
+        }, { passive: true });
+
+        prev.addEventListener('click', function () { go(index - 1); });
+        next.addEventListener('click', function () { go(index + 1); });
+
+        /* arrow keys only while the album itself has focus, so they don't
+           steal page scrolling from the rest of the document */
+        album.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+          else if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+        });
+
+        /* a width change would otherwise leave the track mid-slide */
+        var resized;
+        window.addEventListener('resize', function () {
+          clearTimeout(resized);
+          resized = setTimeout(function () {
+            track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' });
+          }, 120);
+        });
+
+        album.classList.add('is-ready');
+        sync();
       })();
     </script>
 
